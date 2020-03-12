@@ -10,7 +10,7 @@ class AppWidget extends StatelessWidget {
       title: 'Paróquia São Lourenço',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        fontFamily: 'Raleway'
+        fontFamily: 'Raleway',
       ),
       initialRoute: '/',
       onGenerateRoute: Modular.generateRoute,

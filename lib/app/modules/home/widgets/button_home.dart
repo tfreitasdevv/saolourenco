@@ -12,6 +12,7 @@ class ButtonHome extends StatelessWidget {
 
     return RaisedButton(
       onPressed: funcao,
+      color: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Text(

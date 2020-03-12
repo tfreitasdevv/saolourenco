@@ -54,7 +54,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   ),
                   ButtonHome(
                     texto: "Avisos Paroquiais",
-                    funcao: () {},
+                    funcao: () {Modular.to.pushNamed('/avisos');},
                   ),
                   SizedBox(
                     height: 20,
