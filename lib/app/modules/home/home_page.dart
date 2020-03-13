@@ -49,7 +49,9 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                 children: <Widget>[
                   ButtonHome(
                     texto: "Pastorais e Movimentos",
-                    funcao: () {},
+                    funcao: () {
+                      Modular.to.pushNamed('/pastorais');
+                    },
                   ),
                   SizedBox(
                     height: 20,
