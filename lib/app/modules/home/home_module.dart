@@ -2,6 +2,7 @@ import 'package:paroquia_sao_lourenco/app/modules/avisos/avisos_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/home/home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:paroquia_sao_lourenco/app/modules/home/home_page.dart';
+import 'package:paroquia_sao_lourenco/app/modules/horarios/horarios_module.dart';
 
 class HomeModule extends ChildModule {
   @override
@@ -13,6 +14,7 @@ class HomeModule extends ChildModule {
   List<Router> get routers => [
         Router(Modular.initialRoute, child: (_, args) => HomePage()),
         Router('/avisos', module: AvisosModule()),
+        Router('/horarios', module: HorariosModule()),
       ];
 
   static Inject get to => Inject<HomeModule>.of();

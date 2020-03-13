@@ -11,6 +11,7 @@ dependencies:
   flutter_mobx: ^1.0.1
   mobx: ^1.0.2+1
   flutter_modular: ^0.5.5
+  expandable: ^4.1.2
   flutter:
     sdk: flutter
 
@@ -29,6 +30,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/icones/
 
   fonts:
     - family: Raleway

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 
 class ButtonHome extends StatelessWidget {
 
@@ -12,12 +13,12 @@ class ButtonHome extends StatelessWidget {
 
     return RaisedButton(
       onPressed: funcao,
-      color: Colors.white,
+      color: t2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Text(
         texto,
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(fontSize: 20, color: Colors.white),
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:paroquia_sao_lourenco/app/modules/home/widgets/app_bar_home.dart';
 import 'package:paroquia_sao_lourenco/app/modules/home/widgets/button_home.dart';
+import 'package:paroquia_sao_lourenco/app/modules/home/widgets/icons_home.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 import 'home_controller.dart';
 
@@ -20,7 +21,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   }
 
   @override
@@ -35,7 +37,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         fit: StackFit.expand,
         children: <Widget>[
           Image.asset(
-            bg,
+            alturaTela > 1920 ? bg4k : bg2k,
             fit: BoxFit.fill,
           ),
           Positioned(top: -230, right: -230, child: Image.asset(tercoBranco)),
@@ -54,14 +56,18 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   ),
                   ButtonHome(
                     texto: "Avisos Paroquiais",
-                    funcao: () {Modular.to.pushNamed('/avisos');},
+                    funcao: () {
+                      Modular.to.pushNamed('/avisos');
+                    },
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   ButtonHome(
                     texto: "Horários das Missas",
-                    funcao: () {},
+                    funcao: () {
+                      Modular.to.pushNamed('/horarios');
+                    },
                   ),
                   SizedBox(
                     height: 20,
@@ -82,31 +88,18 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             ),
           ),
           Positioned(
-            bottom: 10,
-            left: 0,
-            right: 0,
-            child: Column(
-              children: <Widget>[
-                Text(
-                  "Rua Dr. Benjamin Constant, 72\nSão Lourenço - Niterói",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15
-                  ),
-                  ),
-                  SizedBox(height: 10,),
-                  Text(
-                  "(21) 2621-5742",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15
-                  ),
-                  )
-              ],
-            )
-            )
+              bottom: 10,
+              left: 0,
+              right: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  IconsHome(icone: 'assets/icones/f2.png', funcao: (){}),
+                  IconsHome(icone: 'assets/icones/i1.png', funcao: (){}),
+                  IconsHome(icone: 'assets/icones/t.png', funcao: (){}),
+                  IconsHome(icone: 'assets/icones/m.png', funcao: (){}),
+                  ],
+              ))
         ],
       ),
     );

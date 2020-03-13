@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:paroquia_sao_lourenco/app/modules/avisos/widgets/aviso_card.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 import 'avisos_controller.dart';
 
@@ -19,7 +20,7 @@ class _AvisosPageState extends ModularState<AvisosPage, AvisosController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: t2,
           title: Text(widget.title),
           centerTitle: true,
         ),
@@ -29,22 +30,44 @@ class _AvisosPageState extends ModularState<AvisosPage, AvisosController> {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(bg), fit: BoxFit.cover)),
+                      image: AssetImage(
+                          MediaQuery.of(context).size.height > 1920
+                              ? bg4k
+                              : bg2k),
+                      fit: BoxFit.cover)),
               child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                padding: EdgeInsets.fromLTRB(10, 5, 10, 100),
                 children: <Widget>[
-                  Card(
-                      child: Padding(
-                    padding: EdgeInsets.all(4),
-                    child: Column(
-                      children: <Widget>[
-                        Text("Lançamento do novo Aplicativo"),
-                        Text(
-                            "Lorem Ipsum is simply dummy" 
-                            "text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
-                      ],
-                    ),
-                  )),
+                  AvisoCard(
+                      titulo: "Título 1",
+                      data: "Publicado em 13/03/2020",
+                      descricao:
+                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
+                  AvisoCard(
+                      titulo: "Título 2",
+                      data: "Publicado em 13/03/2020",
+                      descricao:
+                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
+                  AvisoCard(
+                      titulo: "Título 3",
+                      data: "Publicado em 13/03/2020",
+                      descricao:
+                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
+                  AvisoCard(
+                      titulo: "Título 4",
+                      data: "Publicado em 13/03/2020",
+                      descricao:
+                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
+                  AvisoCard(
+                      titulo: "Título 5",
+                      data: "Publicado em 13/03/2020",
+                      descricao:
+                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
+                  AvisoCard(
+                      titulo: "Título 6",
+                      data: "Publicado em 13/03/2020",
+                      descricao:
+                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
                 ],
               )),
         ));
