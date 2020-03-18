@@ -32,77 +32,87 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     double statusSize = MediaQuery.of(context).padding.top;
 
     return Scaffold(
-      body: Stack(
-        overflow: Overflow.visible,
-        fit: StackFit.expand,
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(
+                    MediaQuery.of(context).size.height > 1920 ? bg4k : bg2k),
+                fit: BoxFit.cover)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            AppBarHome(),
+            SizedBox(height: 8),
+            _buildListaBotoes(alturaTela),
+            SizedBox(height: 4),
+            _buildIconesBottom(alturaTela)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Container _buildIconesBottom(double alturaTela) {
+    return Container(
+      height: alturaTela * 0.08,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Image.asset(
-            alturaTela > 1920 ? bg4k : bg2k,
-            fit: BoxFit.fill,
-          ),
-          Positioned(top: -230, right: -230, child: Image.asset(tercoBranco)),
-          AppBarHome(),
-          SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.only(top: statusSize + 165 + 50),
-              child: Column(
-                children: <Widget>[
-                  ButtonHome(
-                    texto: "Pastorais e Movimentos",
-                    funcao: () {
-                      Modular.to.pushNamed('/pastorais');
-                    },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  ButtonHome(
-                    texto: "Avisos Paroquiais",
-                    funcao: () {
-                      Modular.to.pushNamed('/avisos');
-                    },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  ButtonHome(
-                    texto: "Horários das Missas",
-                    funcao: () {
-                      Modular.to.pushNamed('/horarios');
-                    },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  ButtonHome(
-                    texto: "Secretaria",
-                    funcao: () {},
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  ButtonHome(
-                    texto: "Dízimo",
-                    funcao: () {},
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-              bottom: 10,
-              left: 0,
-              right: 0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  IconsHome(icone: 'assets/icones/f2.png', funcao: (){}),
-                  IconsHome(icone: 'assets/icones/i1.png', funcao: (){}),
-                  IconsHome(icone: 'assets/icones/t.png', funcao: (){}),
-                  IconsHome(icone: 'assets/icones/m.png', funcao: (){}),
-                  ],
-              ))
+          IconsHome(icone: 'assets/icones/f2.png', funcao: () {}),
+          IconsHome(icone: 'assets/icones/i1.png', funcao: () {}),
+          IconsHome(icone: 'assets/icones/t.png', funcao: () {}),
+          IconsHome(icone: 'assets/icones/m.png', funcao: () {}),
         ],
+      ),
+    );
+  }
+
+  Container _buildListaBotoes(double alturaTela) {
+    return Container(
+      height: alturaTela * 0.6,
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            ButtonHome(
+              texto: "Pastorais e Movimentos",
+              funcao: () {
+                Modular.to.pushNamed('/pastorais');
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ButtonHome(
+              texto: "Avisos Paroquiais",
+              funcao: () {
+                Modular.to.pushNamed('/avisos');
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ButtonHome(
+              texto: "Horários das Missas",
+              funcao: () {
+                Modular.to.pushNamed('/horarios');
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ButtonHome(
+              texto: "Secretaria",
+              funcao: () {},
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ButtonHome(
+              texto: "Dízimo",
+              funcao: () {},
+            ),
+          ],
+        ),
       ),
     );
   }

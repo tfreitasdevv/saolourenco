@@ -63,6 +63,9 @@ flutter:
         - asset: assets/fonts/CinzelDecorative-Black.ttf
           weight: 900
         
+    - family: Morpheus
+      fonts:
+        - asset: assets/fonts/MORPHEUS.TTF
     
           
 

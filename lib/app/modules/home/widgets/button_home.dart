@@ -11,6 +11,8 @@ class ButtonHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    var largura = MediaQuery.of(context).size.width;
+
     return RaisedButton(
       onPressed: funcao,
       color: t2,
@@ -18,7 +20,9 @@ class ButtonHome extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Text(
         texto,
-        style: TextStyle(fontSize: 20, color: Colors.white),
+        style: TextStyle(
+          fontSize: largura < 400 ? 16 : 20, 
+          color: Colors.white),
       ),
     );
   }
