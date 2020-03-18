@@ -13,7 +13,7 @@ class IntroPageView extends StatelessWidget {
         centerTitle: true,
         title: Text("Pastorais e Movimentos"),
       ),
-      backgroundColor: t1,
+      backgroundColor: Colors.white,
       body: Center(
         child: SizedBox.fromSize(
           size: Size.fromHeight(MediaQuery.of(context).size.height-MediaQuery.of(context).padding.top-50),

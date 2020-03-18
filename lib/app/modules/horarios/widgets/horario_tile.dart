@@ -13,11 +13,11 @@ class HorarioTile extends StatelessWidget {
       leading: Icon(
         Icons.access_time,
         color: Colors.white,
-        size: 30,
+        size: MediaQuery.of(context).size.width < 400 ? 26 : 30,
       ),
       title: Text(
         horario,
-        style: TextStyle(color: Colors.white, fontSize: 18),
+        style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width < 400 ? 16 : 18),
       ),
     );
   }
