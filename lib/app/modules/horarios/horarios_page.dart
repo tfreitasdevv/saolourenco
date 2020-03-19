@@ -25,93 +25,101 @@ class _HorariosPageState
         title: Text(widget.title),
         centerTitle: true,
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(
-                    MediaQuery.of(context).size.height > 1920 ? bg4k : bg2k),
-                fit: BoxFit.cover)),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Domingos",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: MediaQuery.of(context).size.width < 400 ? 18 : 22,
-                      fontFamily: 'CinzelDecorative'),
-                ),
-              ),
-              
-              HorarioTile(
-                horario: '8:00',
-              ),
-              HorarioTile(
-                horario: '10:30',
-              ),
-              HorarioTile(
-                horario: '18:30',
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Sábados",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: MediaQuery.of(context).size.width < 400 ? 18 : 22,
-                      fontFamily: 'CinzelDecorative'),
-                ),
-              ),
-              HorarioTile(
-                horario: '8:00',
-              ),
-              HorarioTile(
-                horario: '16:00 (com crianças)',
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Terças, Quintas e Sextas",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: MediaQuery.of(context).size.width < 400 ? 18 : 22,
-                      fontFamily: 'CinzelDecorative'),
-                ),
-              ),
-              HorarioTile(
-                horario: '8:00',
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Quartas",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: MediaQuery.of(context).size.width < 400 ? 18 : 22,
-                      fontFamily: 'CinzelDecorative'),
-                ),
-              ),
-              HorarioTile(
-                horario: '18:00',
-              ),
-            ],
+      body: _buildBody(context),
+    );
+  }
+
+  Container _buildBody(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(
+                  MediaQuery.of(context).size.width > 420 ? bg4k : bg2k),
+              fit: BoxFit.cover)),
+      child: _buildScrollView(context),
+    );
+  }
+
+  SingleChildScrollView _buildScrollView(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "Domingos",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: MediaQuery.of(context).size.width < 400 ? 18 : 22,
+                  fontFamily: 'CinzelDecorative'),
+            ),
           ),
-        ),
+          
+          HorarioTile(
+            horario: '8:00',
+          ),
+          HorarioTile(
+            horario: '10:30',
+          ),
+          HorarioTile(
+            horario: '18:30',
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "Sábados",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: MediaQuery.of(context).size.width < 400 ? 18 : 22,
+                  fontFamily: 'CinzelDecorative'),
+            ),
+          ),
+          HorarioTile(
+            horario: '8:00',
+          ),
+          HorarioTile(
+            horario: '16:00 (com crianças)',
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "Terças, Quintas e Sextas",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: MediaQuery.of(context).size.width < 400 ? 18 : 22,
+                  fontFamily: 'CinzelDecorative'),
+            ),
+          ),
+          HorarioTile(
+            horario: '8:00',
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "Quartas",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: MediaQuery.of(context).size.width < 400 ? 18 : 22,
+                  fontFamily: 'CinzelDecorative'),
+            ),
+          ),
+          HorarioTile(
+            horario: '18:00',
+          ),
+        ],
       ),
     );
   }
