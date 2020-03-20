@@ -14,6 +14,7 @@ class ItemCard extends StatelessWidget {
     return InkWell(
       child: Container(
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
                   image: AssetImage(
                     image,
@@ -21,18 +22,19 @@ class ItemCard extends StatelessWidget {
                   fit: BoxFit.cover)),
           height: 20,
           margin: EdgeInsets.all(4),
-          child: Container(
-            padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-            child: Text(
-              titulo,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: textColor,
-                fontSize: MediaQuery.of(context).size.width < 400 ? 16 : 20,
-                fontWeight: FontWeight.bold
-              ),
-            ),
-          )),
+          // child: Container(
+          //   padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
+          //   child: Text(
+          //     titulo,
+          //     textAlign: TextAlign.center,
+          //     style: TextStyle(
+          //       color: textColor,
+          //       fontSize: MediaQuery.of(context).size.width < 400 ? 16 : 20,
+          //       fontWeight: FontWeight.bold
+          //     ),
+          //   ),
+          // )
+          ),
       onTap: funcao,
     );
   }
