@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
-import 'package:paroquia_sao_lourenco/app/shared/utils/text.dart';
 import 'package:paroquia_sao_lourenco/app/shared/widgets/acesso_membros_button.dart';
 
 class MusicaPage extends StatefulWidget {
@@ -37,7 +37,7 @@ class _MusicaPageState extends State<MusicaPage> {
                 SizedBox(height: 22),
                 _contato(context),
                 SizedBox(height: 22),
-                AcessoMembrosButton()
+                AcessoMembrosButton(funcao: () {Modular.to.pushNamed('/musica/membros_musica');})
               ],
             ),
           ),
