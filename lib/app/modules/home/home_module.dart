@@ -3,6 +3,7 @@ import 'package:paroquia_sao_lourenco/app/modules/home/home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:paroquia_sao_lourenco/app/modules/home/home_page.dart';
 import 'package:paroquia_sao_lourenco/app/modules/horarios/horarios_module.dart';
+import 'package:paroquia_sao_lourenco/app/modules/musica/musica_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/pastorais/pastorais_module.dart';
 
 class HomeModule extends ChildModule {
@@ -17,6 +18,7 @@ class HomeModule extends ChildModule {
         Router('/avisos', module: AvisosModule()),
         Router('/horarios', module: HorariosModule()),
         Router('/pastorais', module: PastoraisModule()),
+        Router('/musica', module: MusicaModule()),
       ];
 
   static Inject get to => Inject<HomeModule>.of();

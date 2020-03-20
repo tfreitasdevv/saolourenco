@@ -49,7 +49,7 @@ class _PastoraisPageState
         titulo: 'PASTORAL DA MÚSICA',
         image: 'assets/images/musica.jpg',
         textColor: t1,
-        funcao: () {}),
+        funcao: (){Modular.to.pushNamed('/musica');}),
     PastoralItemModel(
         titulo: 'PASTORAL DO DÍZIMO',
         image: 'assets/images/dizimo.jpg',
