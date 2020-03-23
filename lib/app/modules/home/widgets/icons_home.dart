@@ -10,7 +10,7 @@ class IconsHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        icon: Image.asset(icone, color: Colors.white,),
+        icon: Image.network(icone, color: Colors.white,),
         iconSize: 20,
         onPressed: funcao);
   }

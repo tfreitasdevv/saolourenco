@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "371105984234",
+    "firebase_url": "https://sao-lourenco.firebaseio.com",
+    "project_id": "sao-lourenco",
+    "storage_bucket": "sao-lourenco.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371105984234:android:d2b700c731b9a6d3603193",
+        "android_client_info": {
+          "package_name": "com.saolourenco.paroquia_sao_lourenco"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371105984234-as9sblm5o7573ojg41lekb7f56q125ku.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4zXNn3r5lMSZDrx9Srfk00EKZA2XWRnM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371105984234-as9sblm5o7573ojg41lekb7f56q125ku.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

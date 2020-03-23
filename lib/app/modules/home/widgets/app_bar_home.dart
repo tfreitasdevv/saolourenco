@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 
 class AppBarHome extends StatelessWidget {
   @override
@@ -39,8 +40,8 @@ class AppBarHome extends StatelessWidget {
                 color: Color.fromARGB(0, 120, 132, 180),
                 width: larguraTela * 0.31,
                 height: alturaTela * 0.25,
-                child: Image.asset(
-                  'assets/images/terco-cut-white.png',
+                child: Image.network(
+                  tercoBranco,
                   fit: BoxFit.contain,
                 ),
               ),

@@ -30,7 +30,7 @@ class _AvisosPageState extends ModularState<AvisosPage, AvisosController> {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(
+                      image: NetworkImage(
                           MediaQuery.of(context).size.height > 1920
                               ? bg4k
                               : bg2k),

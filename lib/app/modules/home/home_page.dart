@@ -28,14 +28,12 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   Widget build(BuildContext context) {
     double alturaTela = MediaQuery.of(context).size.height;
-    double larguraTela = MediaQuery.of(context).size.width;
-    double statusSize = MediaQuery.of(context).padding.top;
 
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(
+                image: NetworkImage(
                     MediaQuery.of(context).size.height > 1920 ? bg4k : bg2k),
                 fit: BoxFit.cover)),
         child: Column(
@@ -58,10 +56,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          IconsHome(icone: 'assets/icones/f2.png', funcao: () {}),
-          IconsHome(icone: 'assets/icones/i1.png', funcao: () {}),
-          IconsHome(icone: 'assets/icones/t.png', funcao: () {}),
-          IconsHome(icone: 'assets/icones/m.png', funcao: () {}),
+          IconsHome(icone: facebook, funcao: () {}),
+          IconsHome(icone: instagram, funcao: () {}),
+          IconsHome(icone: telefone, funcao: () {}),
+          IconsHome(icone: mapa, funcao: () {}),
         ],
       ),
     );

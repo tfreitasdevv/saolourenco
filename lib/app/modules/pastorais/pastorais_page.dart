@@ -31,7 +31,7 @@ class _PastoraisPageState
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(
+                image: NetworkImage(
                     MediaQuery.of(context).size.width > 420 ? bg4k : bg2k),
                 fit: BoxFit.cover)),
         child: _buildMainChild(),
@@ -42,52 +42,52 @@ class _PastoraisPageState
   List<PastoralItemModel> pastorais = [
     PastoralItemModel(
         titulo: 'PASTORAL DA LITURGUA',
-        image: 'assets/images/liturgia.jpg',
+        image: liturgia,
         textColor: t1,
         funcao: () {}),
     PastoralItemModel(
         titulo: 'PASTORAL DA MÚSICA',
-        image: 'assets/images/musica.jpg',
+        image: musica,
         textColor: t1,
         funcao: (){Modular.to.pushNamed('/musica');}),
     PastoralItemModel(
         titulo: 'PASTORAL DO DÍZIMO',
-        image: 'assets/images/dizimo.jpg',
+        image: dizimo,
         textColor: t1,
         funcao: () {}),
     PastoralItemModel(
         titulo: 'PASTORAL DO BATISMO',
-        image: 'assets/images/batismo.jpg',
+        image: bastismo,
         textColor: t1,
         funcao: () {}),
     PastoralItemModel(
         titulo: 'GRUPO DE ORAÇÃO',
-        image: 'assets/images/grupo.jpg',
+        image: grupo,
         textColor: Colors.white,
         funcao: () {}),
     PastoralItemModel(
         titulo: 'ENCONTRO DE CASAIS',
-        image: 'assets/images/ecc.jpg',
+        image: ecc,
         textColor: t1,
         funcao: () {}),
     PastoralItemModel(
         titulo: 'EAC',
-        image: 'assets/images/eac.jpg',
+        image: eac,
         textColor: t1,
         funcao: () {}),
     PastoralItemModel(
         titulo: 'EJC',
-        image: 'assets/images/ejc.jpg',
+        image: ejc,
         textColor: t1,
         funcao: () {}),
     PastoralItemModel(
         titulo: 'CATEQUESE',
-        image: 'assets/images/catequese.jpg',
+        image: catequese,
         textColor: t1,
         funcao: () {}),
     PastoralItemModel(
         titulo: 'PASTORAL DA CRISMA',
-        image: 'assets/images/crisma.jpg',
+        image: crisma,
         textColor: t1,
         funcao: () {}),
   ];

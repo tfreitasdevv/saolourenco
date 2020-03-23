@@ -34,7 +34,7 @@ class _HorariosPageState
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(
+              image: NetworkImage(
                   MediaQuery.of(context).size.width > 420 ? bg4k : bg2k),
               fit: BoxFit.cover)),
       child: _buildScrollView(context),
