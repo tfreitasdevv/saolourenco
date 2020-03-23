@@ -1,17 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 
 class AvisoCard extends StatelessWidget {
-  final String titulo;
-  final String data;
-  final String descricao;
+ 
+  final DocumentSnapshot snapshot;
 
-  const AvisoCard({Key key, this.titulo, this.data, this.descricao})
-      : super(key: key);
+  const AvisoCard({Key key, this.snapshot}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    Timestamp dataTS = snapshot.data["data"];
+    DateTime dataDT = DateTime.fromMillisecondsSinceEpoch(dataTS.seconds*1000);
+    var dataFormatada = DateFormat('dd/MM/yyyy').format(dataDT);
+    String descricaoForm = snapshot.data['descricao'];
+    String nD = descricaoForm.replaceAll("\\n", "\n");
+
     return Card(
         child: Padding(
       padding: EdgeInsets.all(12),
@@ -19,7 +26,7 @@ class AvisoCard extends StatelessWidget {
             header: Column(
               children: <Widget>[
                 Text(
-                  titulo,
+                  snapshot.data['titulo'],
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
@@ -29,7 +36,7 @@ class AvisoCard extends StatelessWidget {
                 Align(
                   //alignment: Alignment.centerRight,
                   child: Text(
-                    data,
+                    "Publicado em $dataFormatada",
                     style: TextStyle(color: t5),
                   ),
                 ),
@@ -39,12 +46,15 @@ class AvisoCard extends StatelessWidget {
               ],
             ),
             collapsed: Text(
-              descricao,
+              nD,
               softWrap: true,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
-            expanded: Text(descricao, softWrap: true),
+            expanded: 
+            Text(
+              nD,
+             softWrap: true),
           )
     ));
   }

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:paroquia_sao_lourenco/app/modules/avisos/widgets/aviso_card.dart';
@@ -36,40 +37,22 @@ class _AvisosPageState extends ModularState<AvisosPage, AvisosController> {
                               ? bg4k
                               : bg2k),
                       fit: BoxFit.cover)),
-              child: ListView(
-                padding: EdgeInsets.fromLTRB(10, 5, 10, 100),
-                children: <Widget>[
-                  AvisoCard(
-                      titulo: "Título 1",
-                      data: "Publicado em 13/03/2020",
-                      descricao:
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
-                  AvisoCard(
-                      titulo: "Título 2",
-                      data: "Publicado em 13/03/2020",
-                      descricao:
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
-                  AvisoCard(
-                      titulo: "Título 3",
-                      data: "Publicado em 13/03/2020",
-                      descricao:
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
-                  AvisoCard(
-                      titulo: "Título 4",
-                      data: "Publicado em 13/03/2020",
-                      descricao:
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
-                  AvisoCard(
-                      titulo: "Título 5",
-                      data: "Publicado em 13/03/2020",
-                      descricao:
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
-                  AvisoCard(
-                      titulo: "Título 6",
-                      data: "Publicado em 13/03/2020",
-                      descricao:
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
-                ],
+              child: FutureBuilder<QuerySnapshot>(
+                future: Firestore.instance.collection("avisos").orderBy('data', descending: true).getDocuments(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(child: CircularProgressIndicator());
+                  } else {
+                    return ListView(
+                      addAutomaticKeepAlives: true,
+                      padding: EdgeInsets.fromLTRB(10, 5, 10, 100),
+                      children: snapshot.data.documents.map(
+                        (doc){
+                          return AvisoCard(snapshot: doc);}
+                      ).toList(),
+                    );
+                  }
+                },
               )),
         ));
   }
