@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -31,7 +32,7 @@ class _PastoraisPageState
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage(
+                image: CachedNetworkImageProvider(
                     MediaQuery.of(context).size.width > 420 ? bg4k : bg2k),
                 fit: BoxFit.cover)),
         child: _buildMainChild(),

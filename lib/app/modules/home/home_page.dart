@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -33,7 +34,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage(
+                image: CachedNetworkImageProvider(
                     MediaQuery.of(context).size.height > 1920 ? bg4k : bg2k),
                 fit: BoxFit.cover)),
         child: Column(

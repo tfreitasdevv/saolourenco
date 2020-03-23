@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
@@ -25,7 +26,7 @@ class _MusicaPageState extends State<MusicaPage> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage(
+                image: CachedNetworkImageProvider(
                     MediaQuery.of(context).size.width > 420 ? bg4k : bg2k),
                 fit: BoxFit.cover)),
         child: SingleChildScrollView(

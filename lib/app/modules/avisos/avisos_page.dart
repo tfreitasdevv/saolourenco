@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:paroquia_sao_lourenco/app/modules/avisos/widgets/aviso_card.dart';
@@ -30,7 +31,7 @@ class _AvisosPageState extends ModularState<AvisosPage, AvisosController> {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(
+                      image: CachedNetworkImageProvider(
                           MediaQuery.of(context).size.height > 1920
                               ? bg4k
                               : bg2k),

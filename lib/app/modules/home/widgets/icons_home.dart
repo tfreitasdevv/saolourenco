@@ -1,7 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class IconsHome extends StatelessWidget {
-
   final String icone;
   final Function funcao;
 
@@ -10,7 +10,10 @@ class IconsHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        icon: Image.network(icone, color: Colors.white,),
+        icon: CachedNetworkImage(
+          color: Colors.white,
+          imageUrl: icone,
+        ),
         iconSize: 20,
         onPressed: funcao);
   }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 
@@ -40,9 +41,9 @@ class AppBarHome extends StatelessWidget {
                 color: Color.fromARGB(0, 120, 132, 180),
                 width: larguraTela * 0.31,
                 height: alturaTela * 0.25,
-                child: Image.network(
-                  tercoBranco,
+                child: CachedNetworkImage(
                   fit: BoxFit.contain,
+                  imageUrl: tercoBranco,
                 ),
               ),
             ],
