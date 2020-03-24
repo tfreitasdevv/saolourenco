@@ -47,10 +47,20 @@ class _HorariosPageState
   SingleChildScrollView _buildScrollView(BuildContext context) {
     return SingleChildScrollView(
         child: FutureBuilder<QuerySnapshot>(
-      future: Firestore.instance.collection('horarios_missas').orderBy('ordem').getDocuments(),
+      future: Firestore.instance
+          .collection('horarios_missas')
+          .orderBy('ordem')
+          .getDocuments(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Center(child: CircularProgressIndicator());
+          return Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation(Colors.white),
+                ),
+              ));
         } else {
           return Container(
             width: MediaQuery.of(context).size.width,

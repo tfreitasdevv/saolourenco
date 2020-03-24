@@ -38,18 +38,22 @@ class _AvisosPageState extends ModularState<AvisosPage, AvisosController> {
                               : bg2k),
                       fit: BoxFit.cover)),
               child: FutureBuilder<QuerySnapshot>(
-                future: Firestore.instance.collection("avisos").orderBy('data', descending: true).getDocuments(),
+                future: Firestore.instance
+                    .collection("avisos")
+                    .orderBy('data', descending: true)
+                    .getDocuments(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
+                    return Center(
+                        child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation(Colors.white)));
                   } else {
                     return ListView(
                       addAutomaticKeepAlives: true,
                       padding: EdgeInsets.fromLTRB(10, 5, 10, 100),
-                      children: snapshot.data.documents.map(
-                        (doc){
-                          return AvisoCard(snapshot: doc);}
-                      ).toList(),
+                      children: snapshot.data.documents.map((doc) {
+                        return AvisoCard(snapshot: doc);
+                      }).toList(),
                     );
                   }
                 },

@@ -7,35 +7,33 @@ class ItemCard extends StatelessWidget {
   final Function funcao;
   final Color textColor;
 
-  const ItemCard({Key key, this.titulo, this.image, this.funcao, this.textColor})
+  const ItemCard(
+      {Key key, this.titulo, this.image, this.funcao, this.textColor})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+        child: CachedNetworkImage(
+          imageUrl: image,
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
-                  image: CachedNetworkImageProvider(
-                    image,
-                  ),
-                  fit: BoxFit.cover)),
-          height: 20,
-          margin: EdgeInsets.all(4),
-          // child: Container(
-          //   padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-          //   child: Text(
-          //     titulo,
-          //     textAlign: TextAlign.center,
-          //     style: TextStyle(
-          //       color: textColor,
-          //       fontSize: MediaQuery.of(context).size.width < 400 ? 16 : 20,
-          //       fontWeight: FontWeight.bold
-          //     ),
-          //   ),
-          // )
+                image: imageProvider,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
+          placeholder: (context, url) => Center(
+              child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation(Colors.white))),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        ),
+        height: 20,
+        margin: EdgeInsets.all(4),
+      ),
       onTap: funcao,
     );
   }
