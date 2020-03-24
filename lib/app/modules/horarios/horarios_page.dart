@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:paroquia_sao_lourenco/app/modules/horarios/widgets/horario_tile.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 import 'horarios_controller.dart';
+import 'widgets/horario_tile.dart';
 
 class HorariosPage extends StatefulWidget {
   final String title;
@@ -44,84 +46,43 @@ class _HorariosPageState
 
   SingleChildScrollView _buildScrollView(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "Domingos",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: MediaQuery.of(context).size.width < 400 ? 18 : 22,
-                  fontFamily: 'CinzelDecorative'),
+        child: FutureBuilder<QuerySnapshot>(
+      future: Firestore.instance.collection('horarios_missas').orderBy('ordem').getDocuments(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return Center(child: CircularProgressIndicator());
+        } else {
+          return Container(
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              children: snapshot.data.documents.map((doc) {
+                List missas = doc.data["missas"];
+                return Column(
+                  children: <Widget>[
+                    Text(
+                      doc["titulo"],
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize:
+                              MediaQuery.of(context).size.width < 400 ? 18 : 22,
+                          fontFamily: 'CinzelDecorative'),
+                    ),
+                    ListView.builder(
+                      addAutomaticKeepAlives: true,
+                      shrinkWrap: true,
+                      itemCount: missas.length,
+                      itemBuilder: (context, index) {
+                        return HorarioTile(horario: missas[index]);
+                      },
+                    ),
+                    SizedBox(height: 30)
+                  ],
+                );
+              }).toList(),
             ),
-          ),
-          
-          HorarioTile(
-            horario: '8:00',
-          ),
-          HorarioTile(
-            horario: '10:30',
-          ),
-          HorarioTile(
-            horario: '18:30',
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "Sábados",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: MediaQuery.of(context).size.width < 400 ? 18 : 22,
-                  fontFamily: 'CinzelDecorative'),
-            ),
-          ),
-          HorarioTile(
-            horario: '8:00',
-          ),
-          HorarioTile(
-            horario: '16:00 (com crianças)',
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "Terças, Quintas e Sextas",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: MediaQuery.of(context).size.width < 400 ? 18 : 22,
-                  fontFamily: 'CinzelDecorative'),
-            ),
-          ),
-          HorarioTile(
-            horario: '8:00',
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "Quartas",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: MediaQuery.of(context).size.width < 400 ? 18 : 22,
-                  fontFamily: 'CinzelDecorative'),
-            ),
-          ),
-          HorarioTile(
-            horario: '18:00',
-          ),
-        ],
-      ),
-    );
+          );
+        }
+      },
+    ));
   }
 }
