@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paroquia_sao_lourenco/app/modules/musica/pages/membros_musica/escala_musica_page.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 
 class MembrosMusicaPage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _MembrosMusicaPageState extends State<MembrosMusicaPage> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: t2,
+          backgroundColor: t1,
           title: Text(widget.title),
           centerTitle: true,
           bottom: TabBar(tabs: [
@@ -31,7 +32,7 @@ class _MembrosMusicaPageState extends State<MembrosMusicaPage> {
         ),
         body: TabBarView(
           children: <Widget>[
-            Container(color: Colors.green),
+            EscalaMusicaPage(),
             Container(color: Colors.yellow),
           ],
         ),
