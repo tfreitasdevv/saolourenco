@@ -22,6 +22,7 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
 
   @override
   Widget build(BuildContext context) {
+    // widget.repository.teste();
     return SingleChildScrollView(
       child: Container(
         color: t2,

@@ -51,6 +51,7 @@ class EscalaMusicaDomingoModel {
   String grupoH3M5;
   String horarioH3M5;
 
+ 
   EscalaMusicaDomingoModel.fromDocument(DocumentSnapshot snapshot) {
     id = snapshot.documentID;
     quantidadeDomingos = snapshot.data['quantidade'];
@@ -121,4 +122,96 @@ class EscalaMusicaDomingoModel {
       horarioH3M5 = "";
     }
   }
+
+   //Tentativa de criar Map
+
+  Map<String, dynamic> escalaMapa;
+
+  EscalaMusicaDomingoModel.toMap(DocumentSnapshot snapshot){
+    escalaMapa = {
+      "mes" : snapshot.data['mes'],
+      "quantidade": snapshot.data['quantidade'],
+      "missa1" : {
+        "data" : snapshot.data['missa1']['data'],
+        "quantidade" : snapshot.data['missa1']['quantidade'],
+        "horario1" : {
+          "grupo" : snapshot.data['missa1']['horario1']['grupo'],
+          "horario" : snapshot.data['missa1']['horario1']['horario'],
+        },
+        "horario2" : {
+          "grupo" : snapshot.data['missa1']['horario2']['grupo'],
+          "horario" : snapshot.data['missa1']['horario2']['horario'],
+        },
+        "horario3" : {
+          "grupo" : snapshot.data['missa1']['horario3']['grupo'],
+          "horario" : snapshot.data['missa1']['horario3']['horario'],
+        }
+      },
+      "missa2" : {
+        "data" : snapshot.data['missa2']['data'],
+        "quantidade" : snapshot.data['missa2']['quantidade'],
+        "horario1" : {
+          "grupo" : snapshot.data['missa2']['horario1']['grupo'],
+          "horario" : snapshot.data['missa2']['horario1']['horario'],
+        },
+        "horario2" : {
+          "grupo" : snapshot.data['missa2']['horario2']['grupo'],
+          "horario" : snapshot.data['missa2']['horario2']['horario'],
+        },
+        "horario3" : {
+          "grupo" : snapshot.data['missa2']['horario3']['grupo'],
+          "horario" : snapshot.data['missa2']['horario3']['horario'],
+        }
+      },
+      "missa3" : {
+        "data" : snapshot.data['missa3']['data'],
+        "quantidade" : snapshot.data['missa3']['quantidade'],
+        "horario1" : {
+          "grupo" : snapshot.data['missa3']['horario1']['grupo'],
+          "horario" : snapshot.data['missa3']['horario1']['horario'],
+        },
+        "horario2" : {
+          "grupo" : snapshot.data['missa3']['horario2']['grupo'],
+          "horario" : snapshot.data['missa3']['horario2']['horario'],
+        },
+        "horario3" : {
+          "grupo" : snapshot.data['missa3']['horario3']['grupo'],
+          "horario" : snapshot.data['missa3']['horario3']['horario'],
+        }
+      },
+      "missa4" : {
+        "data" : snapshot.data['missa4']['data'],
+        "quantidade" : snapshot.data['missa4']['quantidade'],
+        "horario1" : {
+          "grupo" : snapshot.data['missa4']['horario1']['grupo'],
+          "horario" : snapshot.data['missa4']['horario1']['horario'],
+        },
+        "horario2" : {
+          "grupo" : snapshot.data['missa4']['horario2']['grupo'],
+          "horario" : snapshot.data['missa4']['horario2']['horario'],
+        },
+        "horario3" : {
+          "grupo" : snapshot.data['missa4']['horario3']['grupo'],
+          "horario" : snapshot.data['missa4']['horario3']['horario'],
+        }
+      },
+      "missa5" : {
+        "data" : snapshot.data['missa5']['data'],
+        "quantidade" : snapshot.data['missa5']['quantidade'],
+        "horario1" : {
+          "grupo" : snapshot.data['missa5']['horario1']['grupo'],
+          "horario" : snapshot.data['missa5']['horario1']['horario'],
+        },
+        "horario2" : {
+          "grupo" : snapshot.data['missa5']['horario2']['grupo'],
+          "horario" : snapshot.data['missa5']['horario2']['horario'],
+        },
+        "horario3" : {
+          "grupo" : snapshot.data['missa5']['horario3']['grupo'],
+          "horario" : snapshot.data['missa1']['horario3']['horario'],
+        }
+      }
+    };
+  }  
+
 }
