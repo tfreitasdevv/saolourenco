@@ -1,64 +1,49 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:paroquia_sao_lourenco/app/modules/musica/repositories/escala_musica_repository.dart';
 
-import '../../../../shared/constants/constants.dart';
+import '../../models/escala_musica_domingo_model.dart';
 
-class EscalaMusicaPage extends StatelessWidget {
-  _testarPesquisa() async {
-    DocumentSnapshot documentSnapshot = await Firestore.instance
-        .collection('musica_mes_corrente').document('domingo').get();
-    print(documentSnapshot.data['missa1']['horario1']['grupo']);
-  }
+class EscalaMusicaPage extends StatefulWidget {
+  final EscalaMusicaRepository repository;
 
-  preencherDados() async {
-    await Firestore.instance
-        .collection('musica_mes_corrente')
-        .document('domingo')
-        .setData({
-      "missa1": {
-        "data": "8 de março de 2020 00:00:00 UTC-3",
-        "quantidade": 3,
-        "horario1": {"grupo": "Grupo Cerimônia", "horario": "08:00"},
-        "horario2": {"grupo": "Grupo do João", "horario": "10:30"},
-        "horario3": {"grupo": "Grupo do Walter", "horario": "18:30"}
-      },
-      "missa2": {
-        "data": "8 de março de 2020 00:00:00 UTC-3",
-        "quantidade": 3,
-        "horario1": {"grupo": "Grupo da Graça", "horario": "08:00"},
-        "horario2": {"grupo": "Grupo do Walter", "horario": "10:30"},
-        "horario3": {"grupo": "Grupo do Thiago", "horario": "18:30"},
-      },
-      "missa3": {
-        "data": "8 de março de 2020 00:00:00 UTC-3",
-        "quantidade": 3,
-        "horario1": {"grupo": "Grupo do Bira", "horario": "08:00"},
-        "horario2": {"grupo": "N.S. de Fátima", "horario": "10:30"},
-        "horario3": {"grupo": "Grupo Cerimônia", "horario": "18:30"}
-      },
-      "missa4": {
-        "data": "8 de março de 2020 00:00:00 UTC-3",
-        "quantidade": 3,
-        "horario1": {"grupo": "Grupo da Graça", "horario": "08:00"},
-        "horario2": {"grupo": "Grupo do Thiago", "horario": "10:30"},
-        "horario3": {"grupo": "Grupo Divina Luz", "horario": "18:30"}
-      },
-      "missa5": {
-        "data": "8 de março de 2020 00:00:00 UTC-3",
-        "quantidade": 3,
-        "horario1": {"grupo": "Grupo da Graça", "horario": "08:00"},
-        "horario2": {"grupo": "Grupo do João", "horario": "10:30"},
-        "horario3": {"grupo": "Grupo da Annie", "horario": "18:30"}
-      },
-      "mes": "Março de 2020",
-      "quantidade": "5"
-    });
-  }
+  const EscalaMusicaPage({Key key, this.repository}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    _testarPesquisa();
+  _EscalaMusicaPageState createState() => _EscalaMusicaPageState();
+}
 
-    return Container(color: t2, child: Container());
+class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FutureBuilder<EscalaMusicaDomingoModel>(
+        future: widget.repository.obterEscalaDomingoMesCorrente(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Text(snapshot.data.mes),
+                  Text("Domingos"),
+                  Text(snapshot.data.dataMissa1),
+                  Row(children: <Widget>[
+                    Text(snapshot.data.horarioH1M1),
+                    Text(snapshot.data.grupoH1M1),
+                  ]),
+                  Row(children: <Widget>[
+                    Text(snapshot.data.horarioH2M1),
+                    Text(snapshot.data.grupoH2M1),
+                  ]),
+                ],
+              ),
+            );
+          }
+        },
+      ),
+    );
   }
 }
