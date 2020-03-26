@@ -32,6 +32,7 @@ class _MembrosMusicaPageState extends State<MembrosMusicaPage> {
           ]),
         ),
         body: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             EscalaMusicaPage(repository: EscalaMusicaRepository(),),
             Container(color: Colors.yellow),

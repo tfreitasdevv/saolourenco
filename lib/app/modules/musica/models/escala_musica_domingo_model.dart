@@ -53,7 +53,7 @@ class EscalaMusicaDomingoModel {
 
   EscalaMusicaDomingoModel.fromDocument(DocumentSnapshot snapshot) {
     id = snapshot.documentID;
-    quantidadeDomingos = int.parse(snapshot.data['quantidade']);
+    quantidadeDomingos = snapshot.data['quantidade'];
     mes = snapshot.data['mes'];
 
     String _timestampToString(Timestamp timestamp) {
