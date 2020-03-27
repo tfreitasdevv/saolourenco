@@ -13,7 +13,7 @@ class EscalaMusicaPage extends StatefulWidget {
   _EscalaMusicaPageState createState() => _EscalaMusicaPageState();
 }
 
-class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
+class _EscalaMusicaPageState extends State<EscalaMusicaPage> with AutomaticKeepAliveClientMixin<EscalaMusicaPage> {
   static const TextStyle mes =
       TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold);
   static const TextStyle diaSemana = TextStyle(color: Colors.white);
@@ -22,6 +22,7 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     // widget.repository.teste();
     return SingleChildScrollView(
       child: Container(
@@ -252,4 +253,7 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

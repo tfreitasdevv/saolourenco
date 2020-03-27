@@ -12,7 +12,7 @@ class MembrosMusicaPage extends StatefulWidget {
   _MembrosMusicaPageState createState() => _MembrosMusicaPageState();
 }
 
-class _MembrosMusicaPageState extends State<MembrosMusicaPage> {
+class _MembrosMusicaPageState extends State<MembrosMusicaPage> with SingleTickerProviderStateMixin<MembrosMusicaPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
