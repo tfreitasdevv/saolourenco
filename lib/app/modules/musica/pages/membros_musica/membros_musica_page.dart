@@ -16,7 +16,7 @@ class _MembrosMusicaPageState extends State<MembrosMusicaPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: t1,
@@ -24,18 +24,24 @@ class _MembrosMusicaPageState extends State<MembrosMusicaPage> {
           centerTitle: true,
           bottom: TabBar(tabs: [
             Tab(
-              text: "Escala das Missas",
+              child: Text("Avisos", textAlign: TextAlign.center),
             ),
             Tab(
-              text: "Avisos",
+              child: Text("Escala de Sábado", textAlign: TextAlign.center),
+            ),
+            Tab(
+              child: Text("Escala de Domingo", textAlign: TextAlign.center),
             ),
           ]),
         ),
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
-            EscalaMusicaPage(repository: EscalaMusicaRepository(),),
             Container(color: Colors.yellow),
+            Container(color: Colors.green),
+            EscalaMusicaPage(
+              repository: EscalaMusicaRepository(),
+            ),
           ],
         ),
       ),

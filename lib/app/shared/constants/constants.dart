@@ -27,3 +27,4 @@ const Color t2 = Color(0xff261E17);
 const Color t3 = Color(0xff403328);
 const Color t4 = Color(0xff6B5745);
 const Color t5 = Color(0xff998060);
+const Color t6 = Color(0xffd3c8bb);

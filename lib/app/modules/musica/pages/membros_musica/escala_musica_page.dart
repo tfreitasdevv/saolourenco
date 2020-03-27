@@ -29,6 +29,7 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
         child: Column(
           children: <Widget>[
             _buildEscalaDomingoCorrente(),
+            _buildEscalaDomingoProximo()
           ],
         ),
       ),
@@ -40,32 +41,76 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
       future: widget.repository.obterEscalaDomingoMesCorrente(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(),
+          return Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation(Colors.white)),
+            ),
           );
         } else {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: <Widget>[
-                Text(snapshot.data.mes,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        // fontWeight: FontWeight.bold,
-                        fontFamily: 'CinzelDecorative')),
-                SizedBox(height: 6),
-                Text("Domingos",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.symmetric(vertical: 6),
+                  color: t6,
+                  child: Text(snapshot.data.mes,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'CinzelDecorative')),
+                ),
                 _buildListaMissa1(snapshot),
                 _buildListaMissa2(snapshot),
                 _buildListaMissa3(snapshot),
                 _buildListaMissa4(snapshot),
-                snapshot.data.quantidadeDomingos > 4 ? _buildListaMissa5(snapshot) : Container(),
+                snapshot.data.quantidadeDomingos > 4
+                    ? _buildListaMissa5(snapshot)
+                    : Container(),
+              ],
+            ),
+          );
+        }
+      },
+    );
+  }
+
+  FutureBuilder<EscalaMusicaDomingoModel> _buildEscalaDomingoProximo() {
+    return FutureBuilder<EscalaMusicaDomingoModel>(
+      future: widget.repository.obterEscalaDomingoMesProximo(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return Container();
+        } else {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.symmetric(vertical: 6),
+                  color: t6,
+                  child: Text(snapshot.data.mes,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'CinzelDecorative')),
+                ),
+                _buildListaMissa1(snapshot),
+                _buildListaMissa2(snapshot),
+                _buildListaMissa3(snapshot),
+                _buildListaMissa4(snapshot),
+                snapshot.data.quantidadeDomingos > 4
+                    ? _buildListaMissa5(snapshot)
+                    : Container(),
               ],
             ),
           );
@@ -81,9 +126,12 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
       shrinkWrap: true,
       children: <Widget>[
         _buildListTileData(snapshot.data.dataMissa1),
-        _buildListTileItems2(snapshot.data.horarioH1M1, snapshot.data.grupoH1M1),
-        _buildListTileItems2(snapshot.data.horarioH2M1, snapshot.data.grupoH2M1),
-        _buildListTileItems2(snapshot.data.horarioH3M1, snapshot.data.grupoH3M1),
+        _buildListTileItems2(
+            snapshot.data.horarioH1M1, snapshot.data.grupoH1M1),
+        _buildListTileItems2(
+            snapshot.data.horarioH2M1, snapshot.data.grupoH2M1),
+        _buildListTileItems2(
+            snapshot.data.horarioH3M1, snapshot.data.grupoH3M1),
       ],
     );
   }
@@ -95,9 +143,12 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
       shrinkWrap: true,
       children: <Widget>[
         _buildListTileData(snapshot.data.dataMissa2),
-        _buildListTileItems2(snapshot.data.horarioH1M2, snapshot.data.grupoH1M2),
-        _buildListTileItems2(snapshot.data.horarioH2M2, snapshot.data.grupoH2M2),
-        _buildListTileItems2(snapshot.data.horarioH3M2, snapshot.data.grupoH3M2),
+        _buildListTileItems2(
+            snapshot.data.horarioH1M2, snapshot.data.grupoH1M2),
+        _buildListTileItems2(
+            snapshot.data.horarioH2M2, snapshot.data.grupoH2M2),
+        _buildListTileItems2(
+            snapshot.data.horarioH3M2, snapshot.data.grupoH3M2),
       ],
     );
   }
@@ -109,9 +160,12 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
       shrinkWrap: true,
       children: <Widget>[
         _buildListTileData(snapshot.data.dataMissa3),
-        _buildListTileItems2(snapshot.data.horarioH1M3, snapshot.data.grupoH1M3),
-        _buildListTileItems2(snapshot.data.horarioH2M3, snapshot.data.grupoH2M3),
-        _buildListTileItems2(snapshot.data.horarioH3M3, snapshot.data.grupoH3M3),
+        _buildListTileItems2(
+            snapshot.data.horarioH1M3, snapshot.data.grupoH1M3),
+        _buildListTileItems2(
+            snapshot.data.horarioH2M3, snapshot.data.grupoH2M3),
+        _buildListTileItems2(
+            snapshot.data.horarioH3M3, snapshot.data.grupoH3M3),
       ],
     );
   }
@@ -123,9 +177,12 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
       shrinkWrap: true,
       children: <Widget>[
         _buildListTileData(snapshot.data.dataMissa4),
-        _buildListTileItems2(snapshot.data.horarioH1M4, snapshot.data.grupoH1M4),
-        _buildListTileItems2(snapshot.data.horarioH2M4, snapshot.data.grupoH2M4),
-        _buildListTileItems2(snapshot.data.horarioH3M4, snapshot.data.grupoH3M4),
+        _buildListTileItems2(
+            snapshot.data.horarioH1M4, snapshot.data.grupoH1M4),
+        _buildListTileItems2(
+            snapshot.data.horarioH2M4, snapshot.data.grupoH2M4),
+        _buildListTileItems2(
+            snapshot.data.horarioH3M4, snapshot.data.grupoH3M4),
       ],
     );
   }
@@ -137,9 +194,12 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
       shrinkWrap: true,
       children: <Widget>[
         _buildListTileData(snapshot.data.dataMissa5),
-        _buildListTileItems2(snapshot.data.horarioH1M5, snapshot.data.grupoH1M5),
-        _buildListTileItems2(snapshot.data.horarioH2M5, snapshot.data.grupoH2M5),
-        _buildListTileItems2(snapshot.data.horarioH3M5, snapshot.data.grupoH3M5),
+        _buildListTileItems2(
+            snapshot.data.horarioH1M5, snapshot.data.grupoH1M5),
+        _buildListTileItems2(
+            snapshot.data.horarioH2M5, snapshot.data.grupoH2M5),
+        _buildListTileItems2(
+            snapshot.data.horarioH3M5, snapshot.data.grupoH3M5),
       ],
     );
   }
@@ -156,10 +216,9 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
         ),
         title: Text(data,
             style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.w500
-            )),
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold)),
       ),
     );
   }
@@ -193,5 +252,4 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage> {
       ),
     );
   }
-
 }

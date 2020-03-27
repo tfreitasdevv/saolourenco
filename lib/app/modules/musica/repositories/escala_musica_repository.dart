@@ -3,14 +3,30 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/escala_musica_domingo_model.dart';
 
 class EscalaMusicaRepository {
+
+  String mesAtual = DateTime.now().month.toString();
+  String anoAtual = DateTime.now().year.toString();
+  String mesProximo = DateTime.now().add(Duration(days: 31)).month.toString();
+  String anoProximo = DateTime.now().add(Duration(days: 31)).year.toString();
+
+
   Future<EscalaMusicaDomingoModel> obterEscalaDomingoMesCorrente() async {
     DocumentSnapshot documentSnapshot = await Firestore.instance
         .collection('musica_mes_corrente')
-        .document('domingo')
+        .document('${mesAtual}_${anoAtual}_domingo')
         .get();
     EscalaMusicaDomingoModel escala =
         EscalaMusicaDomingoModel.fromDocument(documentSnapshot);
-    print(escala);
+    return escala;
+  }
+
+  Future<EscalaMusicaDomingoModel> obterEscalaDomingoMesProximo() async {
+    DocumentSnapshot documentSnapshot = await Firestore.instance
+        .collection('musica_mes_corrente')
+        .document('${mesProximo}_${anoProximo}_domingo')
+        .get();
+    EscalaMusicaDomingoModel escala =
+        EscalaMusicaDomingoModel.fromDocument(documentSnapshot);
     return escala;
   }
 
