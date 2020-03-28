@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
@@ -14,6 +15,8 @@ class MusicaPage extends StatefulWidget {
 }
 
 class _MusicaPageState extends State<MusicaPage> {
+  bool web = kIsWeb;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +29,11 @@ class _MusicaPageState extends State<MusicaPage> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: CachedNetworkImageProvider(
-                    MediaQuery.of(context).size.width > 420 ? bg4k : bg2k),
+                image: web == false
+                    ? CachedNetworkImageProvider(
+                        MediaQuery.of(context).size.height > 400 ? bg4k : bg2k)
+                    : NetworkImage(
+                        MediaQuery.of(context).size.height > 400 ? bg4k : bg2k),
                 fit: BoxFit.cover)),
         child: SingleChildScrollView(
           child: Container(
@@ -38,7 +44,9 @@ class _MusicaPageState extends State<MusicaPage> {
                 SizedBox(height: 22),
                 _contato(context),
                 SizedBox(height: 22),
-                AcessoMembrosButton(funcao: () {Modular.to.pushNamed('/musica/membros_musica');})
+                AcessoMembrosButton(funcao: () {
+                  Modular.to.pushNamed('/musica/membros_musica');
+                })
               ],
             ),
           ),

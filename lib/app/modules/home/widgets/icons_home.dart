@@ -4,16 +4,27 @@ import 'package:flutter/material.dart';
 class IconsHome extends StatelessWidget {
   final String icone;
   final Function funcao;
+  final bool web;
 
-  const IconsHome({Key key, this.icone, this.funcao}) : super(key: key);
+  const IconsHome(
+      {Key key,
+      @required this.icone,
+      @required this.funcao,
+      @required this.web})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        icon: CachedNetworkImage(
-          color: Colors.white,
-          imageUrl: icone,
-        ),
+        icon: web == false
+            ? CachedNetworkImage(
+                color: Colors.white,
+                imageUrl: icone,
+              )
+            : Image.network(
+                icone,
+                color: Colors.white,
+              ),
         iconSize: 20,
         onPressed: funcao);
   }

@@ -6,31 +6,42 @@ class ItemCard extends StatelessWidget {
   final String image;
   final Function funcao;
   final Color textColor;
+  final bool isWeb;
 
   const ItemCard(
-      {Key key, this.titulo, this.image, this.funcao, this.textColor})
+      {Key key,
+      @required this.titulo,
+      @required this.image,
+      @required this.funcao,
+      @required this.textColor,
+      @required this.isWeb})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        child: CachedNetworkImage(
-          imageUrl: image,
-          imageBuilder: (context, imageProvider) => Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
-                image: imageProvider,
+        child: isWeb == false
+            ? CachedNetworkImage(
+                imageUrl: image,
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                placeholder: (context, url) => Center(
+                    child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation(Colors.white))),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              )
+            : Image.network(
+                image,
                 fit: BoxFit.cover,
               ),
-            ),
-          ),
-          placeholder: (context, url) => Center(
-              child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation(Colors.white))),
-          errorWidget: (context, url, error) => Icon(Icons.error),
-        ),
         height: 20,
         margin: EdgeInsets.all(4),
       ),

@@ -16,10 +16,10 @@ const String grupo = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.a
 const String liturgia = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fliturgia.jpg?alt=media&token=bb5357dc-cfbf-4219-ae40-1b1a799cc8d1';
 const String musica = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fmusica.jpg?alt=media&token=dc7ced7c-4f32-4a0e-9772-8960d34a826c';
 
-const String facebook = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Ff2.png?alt=media&token=dac29c47-09ff-4e7c-a136-70a4ecb01e13';
-const String instagram = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Fi1.png?alt=media&token=6952782e-95c6-4ca5-9b17-4b296d642277';
-const String telefone = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Ft.png?alt=media&token=b56c797f-986b-46b2-8fd7-f49326b8a66a';
-const String mapa = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Fm.png?alt=media&token=74e1c577-ec14-4673-b994-e6f0ca486c97';
+const String facebook = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Ff.png?alt=media&token=2fdf7fa1-2acc-4aba-90ee-1fc7a380d2ae';
+const String instagram = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Fi.png?alt=media&token=3e6bed0c-886b-4b48-8b24-ace072148064';
+const String telefone = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Ft.png?alt=media&token=8e1a62f2-2bdd-47fb-b7cc-e97384da832b';
+const String mapa = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Fm.png?alt=media&token=0a6c3f4c-70f4-4d1c-97c4-6f5c1e907bc6';
 
 //Cores
 const Color t1 = Color(0xff0D0A08);

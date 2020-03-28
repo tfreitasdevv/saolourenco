@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:paroquia_sao_lourenco/app/modules/horarios/widgets/horario_tile.dart';
@@ -20,6 +21,8 @@ class _HorariosPageState
     extends ModularState<HorariosPage, HorariosController> {
   //use 'controller' variable to access controller
 
+  bool web = kIsWeb;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,8 +40,11 @@ class _HorariosPageState
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: CachedNetworkImageProvider(
-                  MediaQuery.of(context).size.width > 420 ? bg4k : bg2k),
+              image: web == false
+                  ? CachedNetworkImageProvider(
+                      MediaQuery.of(context).size.height > 400 ? bg4k : bg2k)
+                  : NetworkImage(
+                      MediaQuery.of(context).size.height > 400 ? bg4k : bg2k),
               fit: BoxFit.cover)),
       child: _buildScrollView(context),
     );
@@ -78,6 +84,7 @@ class _HorariosPageState
                           fontFamily: 'CinzelDecorative'),
                     ),
                     ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
                       addAutomaticKeepAlives: true,
                       shrinkWrap: true,
                       itemCount: missas.length,

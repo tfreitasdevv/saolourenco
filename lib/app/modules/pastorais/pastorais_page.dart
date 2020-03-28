@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -20,6 +21,8 @@ class _PastoraisPageState
     extends ModularState<PastoraisPage, PastoraisController> {
   //use 'controller' variable to access controller
 
+  bool web = kIsWeb;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,8 +35,11 @@ class _PastoraisPageState
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: CachedNetworkImageProvider(
-                    MediaQuery.of(context).size.width > 420 ? bg4k : bg2k),
+                image: web == false
+                    ? CachedNetworkImageProvider(
+                        MediaQuery.of(context).size.height > 400 ? bg4k : bg2k)
+                    : NetworkImage(
+                        MediaQuery.of(context).size.height > 400 ? bg4k : bg2k),
                 fit: BoxFit.cover)),
         child: _buildMainChild(),
       ),
@@ -50,7 +56,9 @@ class _PastoraisPageState
         titulo: 'PASTORAL DA MÚSICA',
         image: musica,
         textColor: t1,
-        funcao: (){Modular.to.pushNamed('/musica');}),
+        funcao: () {
+          Modular.to.pushNamed('/musica');
+        }),
     PastoralItemModel(
         titulo: 'PASTORAL DO DÍZIMO',
         image: dizimo,
@@ -67,25 +75,11 @@ class _PastoraisPageState
         textColor: Colors.white,
         funcao: () {}),
     PastoralItemModel(
-        titulo: 'ENCONTRO DE CASAIS',
-        image: ecc,
-        textColor: t1,
-        funcao: () {}),
+        titulo: 'ENCONTRO DE CASAIS', image: ecc, textColor: t1, funcao: () {}),
+    PastoralItemModel(titulo: 'EAC', image: eac, textColor: t1, funcao: () {}),
+    PastoralItemModel(titulo: 'EJC', image: ejc, textColor: t1, funcao: () {}),
     PastoralItemModel(
-        titulo: 'EAC',
-        image: eac,
-        textColor: t1,
-        funcao: () {}),
-    PastoralItemModel(
-        titulo: 'EJC',
-        image: ejc,
-        textColor: t1,
-        funcao: () {}),
-    PastoralItemModel(
-        titulo: 'CATEQUESE',
-        image: catequese,
-        textColor: t1,
-        funcao: () {}),
+        titulo: 'CATEQUESE', image: catequese, textColor: t1, funcao: () {}),
     PastoralItemModel(
         titulo: 'PASTORAL DA CRISMA',
         image: crisma,
@@ -114,6 +108,7 @@ class _PastoraisPageState
                   image: pastorais[index].image,
                   textColor: pastorais[index].textColor,
                   funcao: pastorais[index].funcao,
+                  isWeb: web,
                 ),
               ),
             );

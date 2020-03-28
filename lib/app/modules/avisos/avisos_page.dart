@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:paroquia_sao_lourenco/app/modules/avisos/widgets/aviso_card.dart';
@@ -18,6 +19,8 @@ class AvisosPage extends StatefulWidget {
 class _AvisosPageState extends ModularState<AvisosPage, AvisosController> {
   //use 'controller' variable to access controller
 
+  bool web = kIsWeb;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,10 +35,15 @@ class _AvisosPageState extends ModularState<AvisosPage, AvisosController> {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: CachedNetworkImageProvider(
-                          MediaQuery.of(context).size.height > 1920
-                              ? bg4k
-                              : bg2k),
+                      image: web == false
+                          ? CachedNetworkImageProvider(
+                              MediaQuery.of(context).size.height > 400
+                                  ? bg4k
+                                  : bg2k)
+                          : NetworkImage(
+                              MediaQuery.of(context).size.height > 400
+                                  ? bg4k
+                                  : bg2k),
                       fit: BoxFit.cover)),
               child: FutureBuilder<QuerySnapshot>(
                 future: Firestore.instance

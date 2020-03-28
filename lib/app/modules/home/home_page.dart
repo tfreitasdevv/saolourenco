@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -29,13 +30,18 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   Widget build(BuildContext context) {
     double alturaTela = MediaQuery.of(context).size.height;
+    bool web = kIsWeb;
 
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: CachedNetworkImageProvider(
-                    MediaQuery.of(context).size.height > 1920 ? bg4k : bg2k),
+                image: web == false
+                    ? CachedNetworkImageProvider(
+                        MediaQuery.of(context).size.height > 400 ? bg4k : bg2k)
+                    : NetworkImage(MediaQuery.of(context).size.height > 400
+                        ? bg4k
+                        : bg2k),
                 fit: BoxFit.cover)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,23 +50,23 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             SizedBox(height: 8),
             _buildListaBotoes(alturaTela),
             SizedBox(height: 4),
-            _buildIconesBottom(alturaTela)
+            _buildIconesBottom(alturaTela, web)
           ],
         ),
       ),
     );
   }
 
-  Container _buildIconesBottom(double alturaTela) {
+  Container _buildIconesBottom(double alturaTela, bool web) {
     return Container(
       height: alturaTela * 0.08,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          IconsHome(icone: facebook, funcao: () {}),
-          IconsHome(icone: instagram, funcao: () {}),
-          IconsHome(icone: telefone, funcao: () {}),
-          IconsHome(icone: mapa, funcao: () {}),
+          IconsHome(icone: facebook, funcao: () {}, web: web),
+          IconsHome(icone: instagram, funcao: () {}, web: web),
+          IconsHome(icone: telefone, funcao: () {}, web: web),
+          IconsHome(icone: mapa, funcao: () {}, web: web),
         ],
       ),
     );
