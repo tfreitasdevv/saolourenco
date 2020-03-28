@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+//Imagens do Asset
+const String splash4k = 'assets/images/Splash4k.jpg';
+const String splash2k = 'assets/images/Splash2k.jpg';
+
 //Imagens Firebase Storage
 const String bg4k = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FCommon%2Fbg8.jpg?alt=media&token=1bfa37ce-cc18-413d-a8df-5c5290d57462';
 const String bg2k = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FCommon%2Fbg1080.jpg?alt=media&token=b244f66d-fc09-4f08-83b2-8df1c5f32700';

@@ -2,6 +2,7 @@ import 'package:paroquia_sao_lourenco/app/app_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:paroquia_sao_lourenco/app/app_widget.dart';
+import 'package:paroquia_sao_lourenco/app/commom_pages/splash/splash_page.dart';
 import 'package:paroquia_sao_lourenco/app/modules/home/home_module.dart';
 
 class AppModule extends MainModule {
@@ -12,7 +13,8 @@ class AppModule extends MainModule {
 
   @override
   List<Router> get routers => [
-        Router(Modular.initialRoute, module: HomeModule()),
+        Router('/', child: (_, args) => SplashPage()),
+        Router('/home', module: HomeModule()),
       ];
 
   @override
