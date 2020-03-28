@@ -9,7 +9,7 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Paróquia São Lourenço',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.brown,
         fontFamily: 'Raleway',
       ),
       initialRoute: '/',
