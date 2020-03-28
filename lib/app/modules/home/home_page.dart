@@ -7,6 +7,7 @@ import 'package:paroquia_sao_lourenco/app/modules/home/widgets/app_bar_home.dart
 import 'package:paroquia_sao_lourenco/app/modules/home/widgets/button_home.dart';
 import 'package:paroquia_sao_lourenco/app/modules/home/widgets/icons_home.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -65,13 +66,25 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          IconsHome(icone: facebook, funcao: () {}, web: web),
+          IconsHome(icone: facebook, funcao: (){_facebook();}, web: web),
           IconsHome(icone: instagram, funcao: () {}, web: web),
-          IconsHome(icone: telefone, funcao: () {}, web: web),
-          IconsHome(icone: mapa, funcao: () {}, web: web),
+          IconsHome(icone: telefone, funcao: () {_telefone();}, web: web),
+          IconsHome(icone: mapa, funcao: () {_map();}, web: web),
         ],
       ),
     );
+  }
+
+  void _facebook(){
+    launch("https://www.facebook.com/paroquiasaolourenconiteroi/");
+  }
+
+  void _telefone(){
+    launch("tel:02126215742");
+  }
+
+   void _map(){
+    launch("https://goo.gl/maps/C1pTwXisfhoyH5uE7");
   }
 
   Container _buildListaBotoes(double alturaTela) {
