@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paroquia_sao_lourenco/app/modules/musica/pages/membros_musica/avisos_musica_page.dart';
 import 'package:paroquia_sao_lourenco/app/modules/musica/pages/membros_musica/escala_musica_page.dart';
 import 'package:paroquia_sao_lourenco/app/modules/musica/pages/membros_musica/escala_musica_sabado_page.dart';
 import 'package:paroquia_sao_lourenco/app/modules/musica/repositories/escala_musica_repository.dart';
@@ -39,7 +40,7 @@ class _MembrosMusicaPageState extends State<MembrosMusicaPage>
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
-            Container(color: Colors.yellow),
+            AvisosMusicaPage(),
             EscalaMusicaSabadoPage(
               repository: EscalaMusicaRepository(),
             ),
