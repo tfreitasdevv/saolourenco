@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paroquia_sao_lourenco/app/modules/musica/pages/membros_musica/escala_musica_page.dart';
+import 'package:paroquia_sao_lourenco/app/modules/musica/pages/membros_musica/escala_musica_sabado_page.dart';
 import 'package:paroquia_sao_lourenco/app/modules/musica/repositories/escala_musica_repository.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 
@@ -12,7 +13,8 @@ class MembrosMusicaPage extends StatefulWidget {
   _MembrosMusicaPageState createState() => _MembrosMusicaPageState();
 }
 
-class _MembrosMusicaPageState extends State<MembrosMusicaPage> with SingleTickerProviderStateMixin<MembrosMusicaPage> {
+class _MembrosMusicaPageState extends State<MembrosMusicaPage>
+    with SingleTickerProviderStateMixin<MembrosMusicaPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -38,7 +40,9 @@ class _MembrosMusicaPageState extends State<MembrosMusicaPage> with SingleTicker
           physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             Container(color: Colors.yellow),
-            Container(color: Colors.green),
+            EscalaMusicaSabadoPage(
+              repository: EscalaMusicaRepository(),
+            ),
             EscalaMusicaPage(
               repository: EscalaMusicaRepository(),
             ),

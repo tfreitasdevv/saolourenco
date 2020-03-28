@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:paroquia_sao_lourenco/app/modules/musica/models/escala_musica_sabado_model.dart';
 import 'package:paroquia_sao_lourenco/app/modules/musica/repositories/escala_musica_repository.dart';
 
 import '../../../../shared/constants/constants.dart';
-import '../../models/escala_musica_domingo_model.dart';
 
-class EscalaMusicaPage extends StatefulWidget {
+class EscalaMusicaSabadoPage extends StatefulWidget {
   final EscalaMusicaRepository repository;
 
-  const EscalaMusicaPage({Key key, this.repository}) : super(key: key);
+  const EscalaMusicaSabadoPage({Key key, this.repository}) : super(key: key);
 
   @override
-  _EscalaMusicaPageState createState() => _EscalaMusicaPageState();
+  _EscalaMusicaSabadoPageState createState() => _EscalaMusicaSabadoPageState();
 }
 
-class _EscalaMusicaPageState extends State<EscalaMusicaPage>
-    with AutomaticKeepAliveClientMixin<EscalaMusicaPage> {
+class _EscalaMusicaSabadoPageState extends State<EscalaMusicaSabadoPage>
+    with AutomaticKeepAliveClientMixin<EscalaMusicaSabadoPage> {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -24,17 +24,17 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage>
         color: t2,
         child: Column(
           children: <Widget>[
-            _buildEscalaDomingoCorrente(),
-            _buildEscalaDomingoProximo()
+            _buildEscalaSabadoCorrente(),
+            _buildEscalaSabadoProximo()
           ],
         ),
       ),
     );
   }
 
-  FutureBuilder<EscalaMusicaDomingoModel> _buildEscalaDomingoCorrente() {
-    return FutureBuilder<EscalaMusicaDomingoModel>(
-      future: widget.repository.obterEscalaDomingoMesCorrente(),
+  FutureBuilder<EscalaMusicaSabadoModel> _buildEscalaSabadoCorrente() {
+    return FutureBuilder<EscalaMusicaSabadoModel>(
+      future: widget.repository.obterEscalaSabadoMesCorrente(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Container(
@@ -66,7 +66,7 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage>
                 _buildListaMissa2(snapshot),
                 _buildListaMissa3(snapshot),
                 _buildListaMissa4(snapshot),
-                snapshot.data.quantidadeDomingos > 4
+                snapshot.data.quantidadeSabados > 4
                     ? _buildListaMissa5(snapshot)
                     : Container(),
               ],
@@ -77,9 +77,9 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage>
     );
   }
 
-  FutureBuilder<EscalaMusicaDomingoModel> _buildEscalaDomingoProximo() {
-    return FutureBuilder<EscalaMusicaDomingoModel>(
-      future: widget.repository.obterEscalaDomingoMesProximo(),
+  FutureBuilder<EscalaMusicaSabadoModel> _buildEscalaSabadoProximo() {
+    return FutureBuilder<EscalaMusicaSabadoModel>(
+      future: widget.repository.obterEscalaSabadoMesProximo(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Container();
@@ -104,7 +104,7 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage>
                 _buildListaMissa2(snapshot),
                 _buildListaMissa3(snapshot),
                 _buildListaMissa4(snapshot),
-                snapshot.data.quantidadeDomingos > 4
+                snapshot.data.quantidadeSabados > 4
                     ? _buildListaMissa5(snapshot)
                     : Container(),
               ],
@@ -115,7 +115,7 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage>
     );
   }
 
-  ListView _buildListaMissa1(AsyncSnapshot<EscalaMusicaDomingoModel> snapshot) {
+  ListView _buildListaMissa1(AsyncSnapshot<EscalaMusicaSabadoModel> snapshot) {
     return ListView(
       physics: NeverScrollableScrollPhysics(),
       addAutomaticKeepAlives: true,
@@ -124,15 +124,11 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage>
         _buildListTileData(snapshot.data.dataMissa1),
         _buildListTileItems2(
             snapshot.data.horarioH1M1, snapshot.data.grupoH1M1),
-        _buildListTileItems2(
-            snapshot.data.horarioH2M1, snapshot.data.grupoH2M1),
-        _buildListTileItems2(
-            snapshot.data.horarioH3M1, snapshot.data.grupoH3M1),
       ],
     );
   }
 
-  ListView _buildListaMissa2(AsyncSnapshot<EscalaMusicaDomingoModel> snapshot) {
+  ListView _buildListaMissa2(AsyncSnapshot<EscalaMusicaSabadoModel> snapshot) {
     return ListView(
       physics: NeverScrollableScrollPhysics(),
       addAutomaticKeepAlives: true,
@@ -141,15 +137,11 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage>
         _buildListTileData(snapshot.data.dataMissa2),
         _buildListTileItems2(
             snapshot.data.horarioH1M2, snapshot.data.grupoH1M2),
-        _buildListTileItems2(
-            snapshot.data.horarioH2M2, snapshot.data.grupoH2M2),
-        _buildListTileItems2(
-            snapshot.data.horarioH3M2, snapshot.data.grupoH3M2),
       ],
     );
   }
 
-  ListView _buildListaMissa3(AsyncSnapshot<EscalaMusicaDomingoModel> snapshot) {
+  ListView _buildListaMissa3(AsyncSnapshot<EscalaMusicaSabadoModel> snapshot) {
     return ListView(
       physics: NeverScrollableScrollPhysics(),
       addAutomaticKeepAlives: true,
@@ -158,15 +150,11 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage>
         _buildListTileData(snapshot.data.dataMissa3),
         _buildListTileItems2(
             snapshot.data.horarioH1M3, snapshot.data.grupoH1M3),
-        _buildListTileItems2(
-            snapshot.data.horarioH2M3, snapshot.data.grupoH2M3),
-        _buildListTileItems2(
-            snapshot.data.horarioH3M3, snapshot.data.grupoH3M3),
       ],
     );
   }
 
-  ListView _buildListaMissa4(AsyncSnapshot<EscalaMusicaDomingoModel> snapshot) {
+  ListView _buildListaMissa4(AsyncSnapshot<EscalaMusicaSabadoModel> snapshot) {
     return ListView(
       physics: NeverScrollableScrollPhysics(),
       addAutomaticKeepAlives: true,
@@ -175,15 +163,11 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage>
         _buildListTileData(snapshot.data.dataMissa4),
         _buildListTileItems2(
             snapshot.data.horarioH1M4, snapshot.data.grupoH1M4),
-        _buildListTileItems2(
-            snapshot.data.horarioH2M4, snapshot.data.grupoH2M4),
-        _buildListTileItems2(
-            snapshot.data.horarioH3M4, snapshot.data.grupoH3M4),
       ],
     );
   }
 
-  ListView _buildListaMissa5(AsyncSnapshot<EscalaMusicaDomingoModel> snapshot) {
+  ListView _buildListaMissa5(AsyncSnapshot<EscalaMusicaSabadoModel> snapshot) {
     return ListView(
       physics: NeverScrollableScrollPhysics(),
       addAutomaticKeepAlives: true,
@@ -192,10 +176,6 @@ class _EscalaMusicaPageState extends State<EscalaMusicaPage>
         _buildListTileData(snapshot.data.dataMissa5),
         _buildListTileItems2(
             snapshot.data.horarioH1M5, snapshot.data.grupoH1M5),
-        _buildListTileItems2(
-            snapshot.data.horarioH2M5, snapshot.data.grupoH2M5),
-        _buildListTileItems2(
-            snapshot.data.horarioH3M5, snapshot.data.grupoH3M5),
       ],
     );
   }

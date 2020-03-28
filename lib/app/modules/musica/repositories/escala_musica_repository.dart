@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:paroquia_sao_lourenco/app/modules/musica/models/escala_musica_sabado_model.dart';
 
 import '../models/escala_musica_domingo_model.dart';
 
@@ -27,6 +28,26 @@ class EscalaMusicaRepository {
         .get();
     EscalaMusicaDomingoModel escala =
         EscalaMusicaDomingoModel.fromDocument(documentSnapshot);
+    return escala;
+  }
+
+  Future<EscalaMusicaSabadoModel> obterEscalaSabadoMesCorrente() async {
+    DocumentSnapshot documentSnapshot = await Firestore.instance
+        .collection('musica_mes_corrente')
+        .document('${mesAtual}_${anoAtual}_sabado')
+        .get();
+    EscalaMusicaSabadoModel escala =
+        EscalaMusicaSabadoModel.fromDocument(documentSnapshot);
+    return escala;
+  }
+
+  Future<EscalaMusicaSabadoModel> obterEscalaSabadoMesProximo() async {
+    DocumentSnapshot documentSnapshot = await Firestore.instance
+        .collection('musica_mes_corrente')
+        .document('${mesProximo}_${anoProximo}_sabado')
+        .get();
+    EscalaMusicaSabadoModel escala =
+        EscalaMusicaSabadoModel.fromDocument(documentSnapshot);
     return escala;
   }
 

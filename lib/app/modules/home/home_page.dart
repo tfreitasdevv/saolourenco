@@ -23,8 +23,11 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   void initState() {
     super.initState();
+    bool web = kIsWeb;
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    SystemChrome.setEnabledSystemUIOverlays(
+        web == false ? [SystemUiOverlay.bottom, SystemUiOverlay.top] : []);
   }
 
   @override
@@ -39,9 +42,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                 image: web == false
                     ? CachedNetworkImageProvider(
                         MediaQuery.of(context).size.height > 400 ? bg4k : bg2k)
-                    : NetworkImage(MediaQuery.of(context).size.height > 400
-                        ? bg4k
-                        : bg2k),
+                    : NetworkImage(
+                        MediaQuery.of(context).size.height > 400 ? bg4k : bg2k),
                 fit: BoxFit.cover)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
