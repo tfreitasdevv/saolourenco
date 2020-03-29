@@ -1,5 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 
@@ -11,7 +9,6 @@ class AppBarHome extends StatelessWidget {
     double larguraTela = MediaQuery.of(context).size.width;
     double alturaTela = MediaQuery.of(context).size.height;
     double statusSize = MediaQuery.of(context).padding.top;
-    bool web = kIsWeb;
 
     return Container(
       color: Colors.transparent,
@@ -45,15 +42,7 @@ class AppBarHome extends StatelessWidget {
                 color: Color.fromARGB(0, 120, 132, 180),
                 width: larguraTela * 0.31,
                 height: alturaTela * 0.25,
-                child: web == false
-                    ? CachedNetworkImage(
-                        fit: BoxFit.contain,
-                        imageUrl: tercoBranco,
-                      )
-                    : Image.network(
-                        tercoBranco,
-                        fit: BoxFit.contain,
-                      ),
+                child: Image.asset(tercoBranco),
               ),
             ],
           ),

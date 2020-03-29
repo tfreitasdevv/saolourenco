@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -35,16 +34,7 @@ class _AvisosPageState extends ModularState<AvisosPage, AvisosController> {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: web == false
-                          ? CachedNetworkImageProvider(
-                              MediaQuery.of(context).size.height > 400
-                                  ? bg4k
-                                  : bg2k)
-                          : NetworkImage(
-                              MediaQuery.of(context).size.height > 400
-                                  ? bg4k
-                                  : bg2k),
-                      fit: BoxFit.cover)),
+                      image: AssetImage(bg), fit: BoxFit.cover)),
               child: FutureBuilder<QuerySnapshot>(
                 future: Firestore.instance
                     .collection("avisos")

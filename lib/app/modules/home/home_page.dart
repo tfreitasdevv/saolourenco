@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,13 +39,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       body: Container(
         decoration: BoxDecoration(
             color: t2,
-            image: DecorationImage(
-                image: web == false
-                    ? CachedNetworkImageProvider(
-                        MediaQuery.of(context).size.height > 400 ? bg4k : bg2k)
-                    : NetworkImage(
-                        MediaQuery.of(context).size.height > 400 ? bg4k : bg2k),
-                fit: BoxFit.cover)),
+            image: DecorationImage(image: AssetImage(bg), fit: BoxFit.cover)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[

@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -39,13 +38,7 @@ class _HorariosPageState
     return Container(
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
-          image: DecorationImage(
-              image: web == false
-                  ? CachedNetworkImageProvider(
-                      MediaQuery.of(context).size.height > 400 ? bg4k : bg2k)
-                  : NetworkImage(
-                      MediaQuery.of(context).size.height > 400 ? bg4k : bg2k),
-              fit: BoxFit.cover)),
+          image: DecorationImage(image: AssetImage(bg), fit: BoxFit.cover)),
       child: _buildScrollView(context),
     );
   }
@@ -75,6 +68,7 @@ class _HorariosPageState
                 List missas = doc.data["missas"];
                 return Column(
                   children: <Widget>[
+                    SizedBox(height: 8),
                     Text(
                       doc["titulo"],
                       style: TextStyle(

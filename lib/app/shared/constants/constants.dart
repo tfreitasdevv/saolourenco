@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 //Imagens do Asset
 const String splash4k = 'assets/images/Splash4k.jpg';
 const String splash2k = 'assets/images/Splash2k.jpg';
+const String bg = 'assets/images/BG8.jpg';
+const String tercoBranco = 'assets/images/terco-cut-white.png';
 
 //Imagens Firebase Storage
-const String bg4k = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FCommon%2Fbg8.jpg?alt=media&token=1bfa37ce-cc18-413d-a8df-5c5290d57462';
-const String bg2k = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FCommon%2Fbg1080.jpg?alt=media&token=b244f66d-fc09-4f08-83b2-8df1c5f32700';
-const String tercoBranco = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FCommon%2Fterco-cut-white.png?alt=media&token=f2e20d53-8175-4db8-b3ef-77fb95759fe3';
+
 
 const String bastismo = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fbatismo.jpg?alt=media&token=c96f6c95-8c77-4393-85c0-e17f43a2bc21';
 const String catequese = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fcatequese.jpg?alt=media&token=67c4e76c-1611-462a-904b-0531c944d130';

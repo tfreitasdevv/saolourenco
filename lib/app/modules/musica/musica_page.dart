@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -28,13 +27,7 @@ class _MusicaPageState extends State<MusicaPage> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-            image: DecorationImage(
-                image: web == false
-                    ? CachedNetworkImageProvider(
-                        MediaQuery.of(context).size.height > 400 ? bg4k : bg2k)
-                    : NetworkImage(
-                        MediaQuery.of(context).size.height > 400 ? bg4k : bg2k),
-                fit: BoxFit.cover)),
+            image: DecorationImage(image: AssetImage(bg), fit: BoxFit.cover)),
         child: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.all(28),
