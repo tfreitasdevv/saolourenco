@@ -13,8 +13,9 @@ class AppModule extends MainModule {
 
   @override
   List<Router> get routers => [
-        Router('/', child: (_, args) => SplashPage()),
-        Router('/home', module: HomeModule()),
+        // Router('/', child: (_, args) => SplashPage()),
+        // Router('/home', module: HomeModule()),
+        Router(Modular.initialRoute, module: HomeModule()),
       ];
 
   @override

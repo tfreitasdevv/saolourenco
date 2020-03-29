@@ -39,6 +39,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
+            color: t2,
             image: DecorationImage(
                 image: web == false
                     ? CachedNetworkImageProvider(
@@ -66,24 +67,39 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          IconsHome(icone: facebook, funcao: (){_facebook();}, web: web),
+          IconsHome(
+              icone: facebook,
+              funcao: () {
+                _facebook();
+              },
+              web: web),
           IconsHome(icone: instagram, funcao: () {}, web: web),
-          IconsHome(icone: telefone, funcao: () {_telefone();}, web: web),
-          IconsHome(icone: mapa, funcao: () {_map();}, web: web),
+          IconsHome(
+              icone: telefone,
+              funcao: () {
+                _telefone();
+              },
+              web: web),
+          IconsHome(
+              icone: mapa,
+              funcao: () {
+                _map();
+              },
+              web: web),
         ],
       ),
     );
   }
 
-  void _facebook(){
+  void _facebook() {
     launch("https://www.facebook.com/paroquiasaolourenconiteroi/");
   }
 
-  void _telefone(){
+  void _telefone() {
     launch("tel:02126215742");
   }
 
-   void _map(){
+  void _map() {
     launch("https://goo.gl/maps/C1pTwXisfhoyH5uE7");
   }
 
