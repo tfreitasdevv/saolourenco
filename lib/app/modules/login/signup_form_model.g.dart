@@ -196,6 +196,24 @@ mixin _$SignupFormModel on _SignupFormModelBase, Store {
     }, _$nascimentoAtom, name: '${_$nascimentoAtom.name}_set');
   }
 
+  final _$nascimentoDataAtom =
+      Atom(name: '_SignupFormModelBase.nascimentoData');
+
+  @override
+  DateTime get nascimentoData {
+    _$nascimentoDataAtom.context.enforceReadPolicy(_$nascimentoDataAtom);
+    _$nascimentoDataAtom.reportObserved();
+    return super.nascimentoData;
+  }
+
+  @override
+  set nascimentoData(DateTime value) {
+    _$nascimentoDataAtom.context.conditionallyRunInAction(() {
+      super.nascimentoData = value;
+      _$nascimentoDataAtom.reportChanged();
+    }, _$nascimentoDataAtom, name: '${_$nascimentoDataAtom.name}_set');
+  }
+
   final _$sexoAtom = Atom(name: '_SignupFormModelBase.sexo');
 
   @override
@@ -327,6 +345,16 @@ mixin _$SignupFormModel on _SignupFormModelBase, Store {
   }
 
   @override
+  dynamic mudarNascAux(DateTime value) {
+    final _$actionInfo = _$_SignupFormModelBaseActionController.startAction();
+    try {
+      return super.mudarNascAux(value);
+    } finally {
+      _$_SignupFormModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic mudarSexo(String value) {
     final _$actionInfo = _$_SignupFormModelBaseActionController.startAction();
     try {
@@ -339,7 +367,7 @@ mixin _$SignupFormModel on _SignupFormModelBase, Store {
   @override
   String toString() {
     final string =
-        'nome: ${nome.toString()},email: ${email.toString()},senha: ${senha.toString()},celular: ${celular.toString()},bairro: ${bairro.toString()},cidade: ${cidade.toString()},complemento: ${complemento.toString()},estado: ${estado.toString()},logradouro: ${logradouro.toString()},numero: ${numero.toString()},nascimento: ${nascimento.toString()},sexo: ${sexo.toString()}';
+        'nome: ${nome.toString()},email: ${email.toString()},senha: ${senha.toString()},celular: ${celular.toString()},bairro: ${bairro.toString()},cidade: ${cidade.toString()},complemento: ${complemento.toString()},estado: ${estado.toString()},logradouro: ${logradouro.toString()},numero: ${numero.toString()},nascimento: ${nascimento.toString()},nascimentoData: ${nascimentoData.toString()},sexo: ${sexo.toString()}';
     return '{$string}';
   }
 }

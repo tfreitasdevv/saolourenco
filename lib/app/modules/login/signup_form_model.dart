@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
 
 part 'signup_form_model.g.dart';
@@ -5,7 +6,6 @@ part 'signup_form_model.g.dart';
 class SignupFormModel = _SignupFormModelBase with _$SignupFormModel;
 
 abstract class _SignupFormModelBase with Store {
-
   @observable
   String nome;
   @action
@@ -59,12 +59,24 @@ abstract class _SignupFormModelBase with Store {
   @observable
   String nascimento;
   @action
-  mudarNascimento(String value) => nascimento = value;
+  mudarNascimento(String value) {
+    nascimento = value;
+    print(nascimento);
+    DateTime aux = DateFormat("dd/MM/yyyy").parse(nascimento);
+    mudarNascAux(aux);
+  }
 
- @observable
+  @observable
+  DateTime nascimentoData;
+  @action
+  mudarNascAux(DateTime value){
+    nascimentoData = value;
+    print("---------------executado-----------------");
+    print(nascimentoData);
+  }
+
+  @observable
   String sexo;
   @action
   mudarSexo(String value) => sexo = value;
-
-  
 }

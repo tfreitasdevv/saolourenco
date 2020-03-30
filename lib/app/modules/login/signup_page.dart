@@ -79,8 +79,9 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                               width: MediaQuery.of(context).size.width * 0.63,
                               child: _buildTextFormField(
                                   texto: "Nascimento",
-                                  onChanged:
-                                      signupFormController.mudarNascimento,
+                                  // onChanged:
+                                  //     signupFormController.mudarNascimento,
+                                  editado: signupFormController.mudarNascimento,
                                   controllerCampo: _nascimentoController,
                                   tipoTeclado: TextInputType.datetime,
                                   mascara: [mascaraData],
@@ -383,11 +384,12 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
 
   _buildTextFormField(
       {@required String texto,
-      @required Function onChanged,
+      Function onChanged,
       @required TextEditingController controllerCampo,
       @required Function validacao,
       @required TextInputType tipoTeclado,
       Function onTap,
+      Function editado,
       List<TextInputFormatter> mascara,
       @required bool obscure}) {
     return TextFormField(
@@ -398,6 +400,7 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
       cursorColor: Colors.white,
       style: TextStyle(color: Colors.white),
       onTap: onTap,
+      onFieldSubmitted: editado,
       obscureText: obscure,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
