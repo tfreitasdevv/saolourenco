@@ -43,6 +43,23 @@ mixin _$SignupFormModel on _SignupFormModelBase, Store {
     }, _$emailAtom, name: '${_$emailAtom.name}_set');
   }
 
+  final _$senhaAtom = Atom(name: '_SignupFormModelBase.senha');
+
+  @override
+  String get senha {
+    _$senhaAtom.context.enforceReadPolicy(_$senhaAtom);
+    _$senhaAtom.reportObserved();
+    return super.senha;
+  }
+
+  @override
+  set senha(String value) {
+    _$senhaAtom.context.conditionallyRunInAction(() {
+      super.senha = value;
+      _$senhaAtom.reportChanged();
+    }, _$senhaAtom, name: '${_$senhaAtom.name}_set');
+  }
+
   final _$celularAtom = Atom(name: '_SignupFormModelBase.celular');
 
   @override
@@ -220,6 +237,16 @@ mixin _$SignupFormModel on _SignupFormModelBase, Store {
   }
 
   @override
+  dynamic mudarSenha(String value) {
+    final _$actionInfo = _$_SignupFormModelBaseActionController.startAction();
+    try {
+      return super.mudarSenha(value);
+    } finally {
+      _$_SignupFormModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic mudarCelular(String value) {
     final _$actionInfo = _$_SignupFormModelBaseActionController.startAction();
     try {
@@ -312,7 +339,7 @@ mixin _$SignupFormModel on _SignupFormModelBase, Store {
   @override
   String toString() {
     final string =
-        'nome: ${nome.toString()},email: ${email.toString()},celular: ${celular.toString()},bairro: ${bairro.toString()},cidade: ${cidade.toString()},complemento: ${complemento.toString()},estado: ${estado.toString()},logradouro: ${logradouro.toString()},numero: ${numero.toString()},nascimento: ${nascimento.toString()},sexo: ${sexo.toString()}';
+        'nome: ${nome.toString()},email: ${email.toString()},senha: ${senha.toString()},celular: ${celular.toString()},bairro: ${bairro.toString()},cidade: ${cidade.toString()},complemento: ${complemento.toString()},estado: ${estado.toString()},logradouro: ${logradouro.toString()},numero: ${numero.toString()},nascimento: ${nascimento.toString()},sexo: ${sexo.toString()}';
     return '{$string}';
   }
 }

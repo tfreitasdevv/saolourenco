@@ -17,6 +17,11 @@ abstract class _SignupFormModelBase with Store {
   mudarEmail(String value) => email = value;
 
   @observable
+  String senha;
+  @action
+  mudarSenha(String value) => senha = value;
+
+  @observable
   String celular;
   @action
   mudarCelular(String value) => celular = value;
