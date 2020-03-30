@@ -44,9 +44,9 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             AppBarHome(),
-            SizedBox(height: 8),
+            SizedBox(height: alturaTela*0.008333),
             _buildListaBotoes(alturaTela),
-            SizedBox(height: 4),
+            SizedBox(height: alturaTela*0.008333),
             _buildIconesBottom(alturaTela, web)
           ],
         ),
@@ -97,8 +97,9 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   }
 
   Container _buildListaBotoes(double alturaTela) {
+    double _alturaSizedBox = alturaTela*0.6*0.03;
     return Container(
-      height: alturaTela * 0.6,
+      height: alturaTela * 0.62,
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -109,7 +110,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               },
             ),
             SizedBox(
-              height: 20,
+              height: _alturaSizedBox,
             ),
             ButtonHome(
               texto: "Avisos Paroquiais",
@@ -118,7 +119,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               },
             ),
             SizedBox(
-              height: 20,
+              height: _alturaSizedBox,
             ),
             ButtonHome(
               texto: "Horários das Missas",
@@ -127,18 +128,20 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               },
             ),
             SizedBox(
-              height: 20,
+              height: _alturaSizedBox,
             ),
             ButtonHome(
               texto: "Secretaria",
               funcao: () {},
             ),
             SizedBox(
-              height: 20,
+              height: _alturaSizedBox,
             ),
             ButtonHome(
               texto: "Dízimo",
-              funcao: () {},
+              funcao: () {
+                Modular.to.pushNamed('/signup');
+              },
             ),
           ],
         ),

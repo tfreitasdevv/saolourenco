@@ -1,7 +1,7 @@
 name: paroquia_sao_lourenco
 description: App para uso gerencial e comunitário da Paróquia São Lourenço.
 
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -24,6 +24,8 @@ dependencies:
   url_launcher: ^5.4.2
   url_launcher_web: ^0.1.1+1
   intl: ^0.16.1
+  shared_preferences: ^0.5.6+3
+  shared_preferences_web: ^0.1.2+4
   flutter:
     sdk: flutter
 

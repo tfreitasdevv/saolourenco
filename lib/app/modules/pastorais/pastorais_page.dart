@@ -25,6 +25,22 @@ class _PastoraisPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(color: t2),
+              accountName: Text("Thiago Freitas"),
+              accountEmail: Text("tfreitasdevv@gmail.com"),
+              currentAccountPicture: InkWell(
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: t2,
         title: FittedBox(child: Text(widget.title)),

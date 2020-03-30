@@ -15,7 +15,7 @@ class AppBarHome extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            height: statusSize,
+            height: statusSize/2,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
