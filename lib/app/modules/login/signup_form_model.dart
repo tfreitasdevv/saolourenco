@@ -24,7 +24,11 @@ abstract class _SignupFormModelBase with Store {
   @observable
   String celular;
   @action
-  mudarCelular(String value) => celular = value;
+  mudarCelular(String value) {
+    celular = value;
+    print(celular);
+    print(celular.length);
+  }
 
   @observable
   String bairro;
@@ -69,7 +73,7 @@ abstract class _SignupFormModelBase with Store {
   @observable
   DateTime nascimentoData;
   @action
-  mudarNascAux(DateTime value){
+  mudarNascAux(DateTime value) {
     nascimentoData = value;
     print("---------------executado-----------------");
     print(nascimentoData);

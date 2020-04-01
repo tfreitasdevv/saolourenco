@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:paroquia_sao_lourenco/app/modules/login/signup_form_model.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
@@ -87,10 +88,12 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                                   mascara: [mascaraData],
                                   onTap: null,
                                   validacao: (String value) {
+                                    DateTime aux =
+                                        DateFormat("dd/MM/yyyy").parse(value);
                                     if (value.isEmpty || value == null) {
                                       return "Campo obrigatório";
-                                    } else if (value.length < 5) {
-                                      return "Nome deve conter pelo menos 6 caracteres";
+                                    } else if (aux == null) {
+                                      return "Data inválida";
                                     }
                                     return null;
                                   },
@@ -113,10 +116,11 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                           controllerCampo: _emailController,
                           tipoTeclado: TextInputType.emailAddress,
                           validacao: (String value) {
-                            if (value.isEmpty || value == null) {
-                              return "Campo obrigatório";
-                            } else if (value.length < 5) {
-                              return "Nome deve conter pelo menos 6 caracteres";
+                            if (value.isEmpty ||
+                                value == null ||
+                                !value.contains("@") ||
+                                !value.contains(".")) {
+                              return "Digite um e-mail válido";
                             }
                             return null;
                           },
@@ -134,10 +138,10 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                                 tipoTeclado: TextInputType.text,
                                 obscure: true,
                                 validacao: (String value) {
-                                  if (value.isEmpty || value == null) {
-                                    return "Campo obrigatório";
-                                  } else if (value.length < 5) {
-                                    return "Nome deve conter pelo menos 6 caracteres";
+                                  if (value.isEmpty ||
+                                      value == null ||
+                                      value.length < 6) {
+                                    return "A senha precisa conter no mínimo 6 caracteres";
                                   }
                                   return null;
                                 }),
@@ -153,8 +157,8 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                                   validacao: (String value) {
                                     if (value.isEmpty || value == null) {
                                       return "Campo obrigatório";
-                                    } else if (value.length < 5) {
-                                      return "Nome deve conter pelo menos 6 caracteres";
+                                    } else if (value.length < 16) {
+                                      return "Número inválido";
                                     }
                                     return null;
                                   },
@@ -176,8 +180,6 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                                 validacao: (String value) {
                                   if (value.isEmpty || value == null) {
                                     return "Campo obrigatório";
-                                  } else if (value.length < 5) {
-                                    return "Nome deve conter pelo menos 6 caracteres";
                                   }
                                   return null;
                                 },
@@ -194,8 +196,6 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                                   validacao: (String value) {
                                     if (value.isEmpty || value == null) {
                                       return "Campo obrigatório";
-                                    } else if (value.length < 5) {
-                                      return "Nome deve conter pelo menos 6 caracteres";
                                     }
                                     return null;
                                   },
@@ -216,11 +216,6 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                                   tipoTeclado: TextInputType.text,
                                   onTap: null,
                                   validacao: (String value) {
-                                    if (value.isEmpty || value == null) {
-                                      return "Campo obrigatório";
-                                    } else if (value.length < 5) {
-                                      return "Nome deve conter pelo menos 6 caracteres";
-                                    }
                                     return null;
                                   },
                                   obscure: false)),
@@ -235,8 +230,6 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                                   validacao: (String value) {
                                     if (value.isEmpty || value == null) {
                                       return "Campo obrigatório";
-                                    } else if (value.length < 5) {
-                                      return "Nome deve conter pelo menos 6 caracteres";
                                     }
                                     return null;
                                   },
@@ -258,8 +251,6 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                                   validacao: (String value) {
                                     if (value.isEmpty || value == null) {
                                       return "Campo obrigatório";
-                                    } else if (value.length < 5) {
-                                      return "Nome deve conter pelo menos 6 caracteres";
                                     }
                                     return null;
                                   },
@@ -304,7 +295,14 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                       ),
                       SizedBox(height: espacos * 2.5),
                       RaisedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (_formKey.currentState.validate()) {
+                            print("Validado corretamente");
+                          } else {
+                            print("Erro de validação");
+                            return null;
+                          }
+                        },
                         child: Text(
                           "CRIAR USUÁRIO",
                           style: TextStyle(
