@@ -26,9 +26,25 @@ class AuthRepository {
       await _salvarDadosUsuario(dadosUsuario);
       onSuccess();
     }).catchError((e) {
+      print(e.code);
       onFail();
     });
   }
+
+  // void criarUsuario(
+  //     {@required Map<String, dynamic> dadosUsuario,
+  //     @required String senha,
+  //     @required VoidCallback onSuccess,
+  //     @required VoidCallback onFail}) async {
+  //   try {
+  //     AuthResult result = await _auth.createUserWithEmailAndPassword(
+  //         email: dadosUsuario["email"], password: senha);
+  //   } catch (error) {
+  //     print("----------*********-----------************-------------");
+  //     print(error);
+  //     print(error.code);
+  //   }
+  // }
 
   Future<Null> _salvarDadosUsuario(Map<String, dynamic> dadosUsuario) async {
     this.dadosUsuario = dadosUsuario;
