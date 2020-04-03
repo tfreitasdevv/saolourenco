@@ -27,6 +27,7 @@ class AuthRepository {
       await localUser.setIsLoadingFalse();
     }).catchError((e) async {
       print(e.code);
+      await localUser.mudarErroAoCriarUsuario(e.code);
       onFail();
       await localUser.setIsLoadingFalse();
     });

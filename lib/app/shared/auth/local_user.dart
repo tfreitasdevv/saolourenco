@@ -41,4 +41,11 @@ abstract class _LocalUserBase with Store {
   String email;
   @action
   mudarEmail(String value) => email = value;
+
+  @observable
+  String erroAoCriarUsuario;
+  @action
+  mudarErroAoCriarUsuario(String value){
+    erroAoCriarUsuario = value;
+  }
 }

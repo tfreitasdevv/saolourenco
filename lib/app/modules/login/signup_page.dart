@@ -434,17 +434,46 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
   }
 
   void _onFail() {
+    String tipoErro = localUser.erroAoCriarUsuario;
+    String mensagemErro = "*Falha ao criar usuário*";
+    switch (tipoErro) {
+      case "ERROR_EMAIL_ALREADY_IN_USE":
+        mensagemErro = "E-mail já cadastrado no sistema";
+        break;
+      case "ERROR_INVALID_EMAIL":
+        mensagemErro = "Formato de e-mail inválido";
+        break;
+      default:
+        mensagemErro = "Consulte o administrador do sistema";
+        break;
+    }
     _scaffoldKey.currentState.showSnackBar(SnackBar(
       content: Container(
         padding: EdgeInsets.all(18),
-        child: Text(
-          "Falha ao criar usuário",
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white, fontSize: 20),
+        child: Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                "Falha ao criar usuário",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              Text(
+                mensagemErro,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              )
+            ],
+          ),
         ),
       ),
       backgroundColor: Colors.black,
-      duration: Duration(seconds: 5),
+      duration: Duration(seconds: 7),
     ));
     print("Erro ao criar usuário");
   }
