@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -26,7 +27,9 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
       mask: '(##) # ####-####', filter: {'#': RegExp(r'[0-9]')});
   final TextInputFormatter mascaraData = MaskTextInputFormatter(
       mask: '##/##/####', filter: {'#': RegExp(r'[0-9]')});
+
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _senhaController = TextEditingController();
@@ -47,6 +50,7 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
     print(localUser.nome);
 
     return Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
           backgroundColor: t1,
           title: Text(widget.title),
@@ -351,53 +355,59 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                         ],
                       ),
                       SizedBox(height: espacos * 2.5),
-                      RaisedButton(
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            DateTime dataAux = DateFormat("dd/MM/yyyy")
-                                .parse(_nascimentoController.text)
-                                .add(Duration(hours: 3));
-                            Timestamp tsAux = Timestamp.fromDate(dataAux);
-                            Map<String, dynamic> dadosUsuario = {
-                              "nome": _nomeController.text,
-                              "email": _emailController.text.toLowerCase(),
-                              "celular": _celularController.text,
-                              "nascimento": tsAux,
-                              "sexo": _sexoController,
-                              "endereco": {
-                                "bairro": _bairroController.text,
-                                "cidade": _cidadeController.text,
-                                "complemento": _complementoController.text,
-                                "estado": _estadoController,
-                                "logradouro": _logradouroController.text,
-                                "numero": _numeroController.text
-                              }
-                            };
+                      Observer(builder: (_) {
+                        if (localUser.isLoading)
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        return RaisedButton(
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              DateTime dataAux = DateFormat("dd/MM/yyyy")
+                                  .parse(_nascimentoController.text)
+                                  .add(Duration(hours: 3));
+                              Timestamp tsAux = Timestamp.fromDate(dataAux);
+                              Map<String, dynamic> dadosUsuario = {
+                                "nome": _nomeController.text,
+                                "email": _emailController.text.toLowerCase(),
+                                "celular": _celularController.text,
+                                "nascimento": tsAux,
+                                "sexo": _sexoController,
+                                "endereco": {
+                                  "bairro": _bairroController.text,
+                                  "cidade": _cidadeController.text,
+                                  "complemento": _complementoController.text,
+                                  "estado": _estadoController,
+                                  "logradouro": _logradouroController.text,
+                                  "numero": _numeroController.text
+                                }
+                              };
 
-                            authRepo.criarUsuario(
-                                dadosUsuario: dadosUsuario,
-                                senha: _senhaController.text,
-                                onSuccess: _onSuccess,
-                                onFail: _onFail);
+                              authRepo.criarUsuario(
+                                  dadosUsuario: dadosUsuario,
+                                  senha: _senhaController.text,
+                                  onSuccess: _onSuccess,
+                                  onFail: _onFail);
 
-                            print("Validado corretamente");
-                            print(_nomeController.text);
-                          } else {
-                            print("Erro de validação");
-                            return null;
-                          }
-                        },
-                        child: Text(
-                          "CRIAR USUÁRIO",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        elevation: 5,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24)),
-                      )
+                              print("Validado corretamente");
+                              print(_nomeController.text);
+                            } else {
+                              print("Erro de validação");
+                              return null;
+                            }
+                          },
+                          child: Text(
+                            "CRIAR USUÁRIO",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          elevation: 5,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 18, vertical: 12),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(24)),
+                        );
+                      })
                     ],
                   ),
                 )),
@@ -405,9 +415,37 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
         ));
   }
 
-  void _onSuccess() {}
+  void _onSuccess() {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Container(
+        padding: EdgeInsets.all(18),
+        child: Text(
+          "Usuário criado com sucesso!",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+      ),
+      backgroundColor: Colors.black,
+      duration: Duration(seconds: 5),
+    ));
+    Future.delayed(Duration(seconds: 5)).then((_) {
+      Navigator.of(context).pop();
+    });
+  }
 
   void _onFail() {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Container(
+        padding: EdgeInsets.all(18),
+        child: Text(
+          "Falha ao criar usuário",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+      ),
+      backgroundColor: Colors.black,
+      duration: Duration(seconds: 5),
+    ));
     print("Erro ao criar usuário");
   }
 

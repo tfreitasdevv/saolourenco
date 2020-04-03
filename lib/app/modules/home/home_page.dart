@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:paroquia_sao_lourenco/app/modules/home/widgets/app_bar_home.dart';
 import 'package:paroquia_sao_lourenco/app/modules/home/widgets/button_home.dart';
 import 'package:paroquia_sao_lourenco/app/modules/home/widgets/icons_home.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../shared/auth/local_user.dart';
 import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,6 +21,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends ModularState<HomePage, HomeController> {
   //use 'controller' variable to access controller
+  final localUser = Modular.get<LocalUser>();
 
   @override
   void initState() {
@@ -44,9 +47,9 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             AppBarHome(),
-            SizedBox(height: alturaTela*0.008333),
+            SizedBox(height: alturaTela * 0.008333),
             _buildListaBotoes(alturaTela),
-            SizedBox(height: alturaTela*0.008333),
+            SizedBox(height: alturaTela * 0.008333),
             _buildIconesBottom(alturaTela, web)
           ],
         ),
@@ -97,7 +100,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   }
 
   Container _buildListaBotoes(double alturaTela) {
-    double _alturaSizedBox = alturaTela*0.6*0.03;
+    double _alturaSizedBox = alturaTela * 0.6 * 0.03;
     return Container(
       height: alturaTela * 0.62,
       child: SingleChildScrollView(
@@ -143,6 +146,21 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                 Modular.to.pushNamed('/signup');
               },
             ),
+            SizedBox(
+              height: _alturaSizedBox,
+            ),
+            Observer(builder: (_) {
+              return Container(
+                child: Center(
+                  child: Text(
+                    localUser.firebaseUser != null
+                        ? "Usuário logado ${localUser.nome}"
+                        : "Usuário não logado",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              );
+            })
           ],
         ),
       ),

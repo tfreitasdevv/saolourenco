@@ -8,15 +8,13 @@ class AuthRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final localUser = Modular.get<LocalUser>();
   Map<String, dynamic> dadosUsuario = Map();
-  
-
-  getUser() {}
 
   void criarUsuario(
       {@required Map<String, dynamic> dadosUsuario,
       @required String senha,
       @required VoidCallback onSuccess,
-      @required VoidCallback onFail}) {
+      @required VoidCallback onFail}) async {
+    await localUser.setIsLoadingTrue();
     _auth
         .createUserWithEmailAndPassword(
       email: dadosUsuario["email"],
@@ -26,9 +24,11 @@ class AuthRepository {
       localUser.setFirebaseUser(authResult.user);
       await _salvarDadosUsuario(dadosUsuario);
       onSuccess();
-    }).catchError((e) {
+      await localUser.setIsLoadingFalse();
+    }).catchError((e) async {
       print(e.code);
       onFail();
+      await localUser.setIsLoadingFalse();
     });
   }
 
@@ -38,5 +38,43 @@ class AuthRepository {
         .collection('usuarios')
         .document(localUser.firebaseUser.uid)
         .setData(dadosUsuario);
+  }
+
+  void logar(
+      {@required String email,
+      @required String senha,
+      @required VoidCallback onSuccess,
+      @required VoidCallback onFail}) async {
+    await localUser.setIsLoadingTrue();
+    _auth
+        .signInWithEmailAndPassword(email: email, password: senha)
+        .then((authResult) async {
+      await localUser.setFirebaseUser(authResult.user);
+      await _obterUsuarioAtual();
+      onSuccess();
+      await localUser.setIsLoadingFalse();
+    }).catchError((e) async {
+      print(e.code);
+      onFail();
+      await localUser.setIsLoadingFalse();
+    });
+  }
+
+  void logout() async {
+    await _auth.signOut();
+    dadosUsuario = Map();
+    localUser.setFirebaseUser(null);
+  }
+
+  Future<Null> _obterUsuarioAtual() async {
+    if (localUser.firebaseUser == null)
+      localUser.firebaseUser = await _auth.currentUser();
+    if (localUser.firebaseUser != null) {
+      DocumentSnapshot docUser = await Firestore.instance
+          .collection('usuarios')
+          .document(localUser.firebaseUser.uid)
+          .get();
+      dadosUsuario = docUser.data;
+    }
   }
 }

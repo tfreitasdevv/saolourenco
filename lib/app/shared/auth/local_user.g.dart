@@ -26,6 +26,23 @@ mixin _$LocalUser on _LocalUserBase, Store {
     }, _$firebaseUserAtom, name: '${_$firebaseUserAtom.name}_set');
   }
 
+  final _$isLoadingAtom = Atom(name: '_LocalUserBase.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.context.enforceReadPolicy(_$isLoadingAtom);
+    _$isLoadingAtom.reportObserved();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.context.conditionallyRunInAction(() {
+      super.isLoading = value;
+      _$isLoadingAtom.reportChanged();
+    }, _$isLoadingAtom, name: '${_$isLoadingAtom.name}_set');
+  }
+
   final _$nomeAtom = Atom(name: '_LocalUserBase.nome');
 
   @override
@@ -60,14 +77,41 @@ mixin _$LocalUser on _LocalUserBase, Store {
     }, _$emailAtom, name: '${_$emailAtom.name}_set');
   }
 
+  final _$setFirebaseUserAsyncAction = AsyncAction('setFirebaseUser');
+
+  @override
+  Future setFirebaseUser(FirebaseUser value) {
+    return _$setFirebaseUserAsyncAction.run(() => super.setFirebaseUser(value));
+  }
+
   final _$_LocalUserBaseActionController =
       ActionController(name: '_LocalUserBase');
 
   @override
-  dynamic setFirebaseUser(FirebaseUser value) {
+  bool isLoggedIn() {
     final _$actionInfo = _$_LocalUserBaseActionController.startAction();
     try {
-      return super.setFirebaseUser(value);
+      return super.isLoggedIn();
+    } finally {
+      _$_LocalUserBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setIsLoadingTrue() {
+    final _$actionInfo = _$_LocalUserBaseActionController.startAction();
+    try {
+      return super.setIsLoadingTrue();
+    } finally {
+      _$_LocalUserBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setIsLoadingFalse() {
+    final _$actionInfo = _$_LocalUserBaseActionController.startAction();
+    try {
+      return super.setIsLoadingFalse();
     } finally {
       _$_LocalUserBaseActionController.endAction(_$actionInfo);
     }
@@ -96,7 +140,7 @@ mixin _$LocalUser on _LocalUserBase, Store {
   @override
   String toString() {
     final string =
-        'firebaseUser: ${firebaseUser.toString()},nome: ${nome.toString()},email: ${email.toString()}';
+        'firebaseUser: ${firebaseUser.toString()},isLoading: ${isLoading.toString()},nome: ${nome.toString()},email: ${email.toString()}';
     return '{$string}';
   }
 }
