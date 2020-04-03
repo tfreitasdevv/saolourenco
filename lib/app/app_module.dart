@@ -8,6 +8,8 @@ import 'package:paroquia_sao_lourenco/app/modules/login/signup_page.dart';
 import 'package:paroquia_sao_lourenco/app/shared/auth/auth_repository.dart';
 import 'package:paroquia_sao_lourenco/app/shared/auth/local_user.dart';
 
+import 'modules/login/login_page.dart';
+
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
@@ -23,6 +25,7 @@ class AppModule extends MainModule {
         // Router('/home', module: HomeModule()),
         Router(Modular.initialRoute, module: HomeModule()),
         Router('/signup', child: (_, args) => SignupPage()),
+        Router('/login', child: (_, args) => LoginPage()),
       ];
 
   @override

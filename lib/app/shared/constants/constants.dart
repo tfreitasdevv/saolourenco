@@ -5,6 +5,7 @@ const String splash4k = 'assets/images/Splash4k.jpg';
 const String splash2k = 'assets/images/Splash2k.jpg';
 const String bg = 'assets/images/BG8.jpg';
 const String tercoBranco = 'assets/images/terco-cut-white.png';
+const String iconeBranco = 'assets/images/IconeBranco.png';
 
 //Imagens Firebase Storage
 

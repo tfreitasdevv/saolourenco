@@ -135,7 +135,9 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             ),
             ButtonHome(
               texto: "Secretaria",
-              funcao: () {},
+              funcao: () {
+                Modular.to.pushNamed('/signup');
+              },
             ),
             SizedBox(
               height: _alturaSizedBox,
@@ -143,7 +145,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             ButtonHome(
               texto: "Dízimo",
               funcao: () {
-                Modular.to.pushNamed('/signup');
+                Modular.to.pushNamed('/login');
               },
             ),
             SizedBox(

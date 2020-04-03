@@ -47,7 +47,6 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
   @override
   Widget build(BuildContext context) {
     final double espacos = MediaQuery.of(context).size.width > 400 ? 12 : 10;
-    print(localUser.nome);
 
     return Scaffold(
         key: _scaffoldKey,
@@ -368,18 +367,18 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                                   .add(Duration(hours: 3));
                               Timestamp tsAux = Timestamp.fromDate(dataAux);
                               Map<String, dynamic> dadosUsuario = {
-                                "nome": _nomeController.text,
-                                "email": _emailController.text.toLowerCase(),
+                                "nome": _nomeController.text.trim(),
+                                "email": _emailController.text.toLowerCase().trim(),
                                 "celular": _celularController.text,
                                 "nascimento": tsAux,
                                 "sexo": _sexoController,
                                 "endereco": {
-                                  "bairro": _bairroController.text,
-                                  "cidade": _cidadeController.text,
-                                  "complemento": _complementoController.text,
+                                  "bairro": _bairroController.text.trim(),
+                                  "cidade": _cidadeController.text.trim(),
+                                  "complemento": _complementoController.text.trim(),
                                   "estado": _estadoController,
-                                  "logradouro": _logradouroController.text,
-                                  "numero": _numeroController.text
+                                  "logradouro": _logradouroController.text.trim(),
+                                  "numero": _numeroController.text.trim()
                                 }
                               };
 
@@ -426,9 +425,9 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
         ),
       ),
       backgroundColor: Colors.black,
-      duration: Duration(seconds: 5),
+      duration: Duration(seconds: 4),
     ));
-    Future.delayed(Duration(seconds: 5)).then((_) {
+    Future.delayed(Duration(seconds: 4)).then((_) {
       Navigator.of(context).pop();
     });
   }
@@ -473,7 +472,7 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
         ),
       ),
       backgroundColor: Colors.black,
-      duration: Duration(seconds: 7),
+      duration: Duration(seconds: 5),
     ));
     print("Erro ao criar usuário");
   }

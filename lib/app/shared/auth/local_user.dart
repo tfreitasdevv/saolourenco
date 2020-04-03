@@ -48,4 +48,11 @@ abstract class _LocalUserBase with Store {
   mudarErroAoCriarUsuario(String value){
     erroAoCriarUsuario = value;
   }
+
+  @observable
+  String erroAoLogar;
+  @action
+  mudarErroAoLogar(String value){
+    erroAoLogar = value;
+  }
 }

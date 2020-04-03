@@ -96,6 +96,23 @@ mixin _$LocalUser on _LocalUserBase, Store {
     }, _$erroAoCriarUsuarioAtom, name: '${_$erroAoCriarUsuarioAtom.name}_set');
   }
 
+  final _$erroAoLogarAtom = Atom(name: '_LocalUserBase.erroAoLogar');
+
+  @override
+  String get erroAoLogar {
+    _$erroAoLogarAtom.context.enforceReadPolicy(_$erroAoLogarAtom);
+    _$erroAoLogarAtom.reportObserved();
+    return super.erroAoLogar;
+  }
+
+  @override
+  set erroAoLogar(String value) {
+    _$erroAoLogarAtom.context.conditionallyRunInAction(() {
+      super.erroAoLogar = value;
+      _$erroAoLogarAtom.reportChanged();
+    }, _$erroAoLogarAtom, name: '${_$erroAoLogarAtom.name}_set');
+  }
+
   final _$setFirebaseUserAsyncAction = AsyncAction('setFirebaseUser');
 
   @override
@@ -167,9 +184,19 @@ mixin _$LocalUser on _LocalUserBase, Store {
   }
 
   @override
+  dynamic mudarErroAoLogar(String value) {
+    final _$actionInfo = _$_LocalUserBaseActionController.startAction();
+    try {
+      return super.mudarErroAoLogar(value);
+    } finally {
+      _$_LocalUserBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     final string =
-        'firebaseUser: ${firebaseUser.toString()},isLoading: ${isLoading.toString()},nome: ${nome.toString()},email: ${email.toString()},erroAoCriarUsuario: ${erroAoCriarUsuario.toString()}';
+        'firebaseUser: ${firebaseUser.toString()},isLoading: ${isLoading.toString()},nome: ${nome.toString()},email: ${email.toString()},erroAoCriarUsuario: ${erroAoCriarUsuario.toString()},erroAoLogar: ${erroAoLogar.toString()}';
     return '{$string}';
   }
 }
