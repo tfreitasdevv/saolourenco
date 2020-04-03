@@ -8,6 +8,7 @@ class AuthRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final localUser = Modular.get<LocalUser>();
   Map<String, dynamic> dadosUsuario = Map();
+  
 
   getUser() {}
 
@@ -30,21 +31,6 @@ class AuthRepository {
       onFail();
     });
   }
-
-  // void criarUsuario(
-  //     {@required Map<String, dynamic> dadosUsuario,
-  //     @required String senha,
-  //     @required VoidCallback onSuccess,
-  //     @required VoidCallback onFail}) async {
-  //   try {
-  //     AuthResult result = await _auth.createUserWithEmailAndPassword(
-  //         email: dadosUsuario["email"], password: senha);
-  //   } catch (error) {
-  //     print("----------*********-----------************-------------");
-  //     print(error);
-  //     print(error.code);
-  //   }
-  // }
 
   Future<Null> _salvarDadosUsuario(Map<String, dynamic> dadosUsuario) async {
     this.dadosUsuario = dadosUsuario;

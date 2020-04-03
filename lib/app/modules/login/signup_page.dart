@@ -5,8 +5,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:paroquia_sao_lourenco/app/shared/auth/auth_repository.dart';
-import 'package:paroquia_sao_lourenco/app/shared/auth/local_user.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
+import '../../shared/auth/local_user.dart';
 import '../../shared/constants/constants.dart';
 import 'login_controller.dart';
 
@@ -19,7 +19,6 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends ModularState<SignupPage, LoginController> {
-
   final firebase = Firestore.instance;
   final localUser = Modular.get<LocalUser>();
   final authRepo = Modular.get<AuthRepository>();
@@ -39,10 +38,13 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
   TextEditingController _complementoController = TextEditingController();
   TextEditingController _cidadeController = TextEditingController();
   TextEditingController _bairroController = TextEditingController();
+  String _estadoController;
+  String _sexoController;
 
   @override
   Widget build(BuildContext context) {
     final double espacos = MediaQuery.of(context).size.width > 400 ? 12 : 10;
+    print(localUser.nome);
 
     return Scaffold(
         appBar: AppBar(
@@ -66,7 +68,9 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                       _buildRotulo("Dados pessoais"),
                       _buildTextFormField(
                           texto: "Nome",
-                          onChanged: localUser.mudarNome,
+                          onChanged: (value) {
+                            _nomeController = value;
+                          },
                           controllerCampo: _nomeController,
                           tipoTeclado: TextInputType.text,
                           validacao: (String value) {
@@ -86,9 +90,10 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                               width: MediaQuery.of(context).size.width * 0.63,
                               child: _buildTextFormField(
                                   texto: "Nascimento",
-                                  // onChanged:
-                                  //     signupFormController.mudarNascimento,
-                                  editado: localUser.mudarNascimento,
+                                  onChanged: (value) {
+                                    _nascimentoController = value;
+                                  },
+                                  // editado: localUser.mudarNascimento,
                                   controllerCampo: _nascimentoController,
                                   tipoTeclado: TextInputType.datetime,
                                   mascara: [mascaraData],
@@ -115,11 +120,18 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                                   fatorTela: 0.37,
                                   itens: <String>['F', 'M'],
                                   titulo: "Sexo",
-                                  onChanged: localUser.mudarSexo,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _sexoController = value;
+                                    });
+                                  },
                                   validacao: (String value) {
                                     if (value.isEmpty || value == null) {
                                     } else
                                       return null;
+                                  },
+                                  onSaved: (value) {
+                                    _sexoController = value;
                                   }))
                         ],
                       ),
@@ -127,7 +139,9 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                       _buildRotulo("Dados de contato e informações para Login"),
                       _buildTextFormField(
                           texto: "E-mail",
-                          onChanged: localUser.mudarEmail,
+                          onChanged: (value) {
+                            _emailController = value;
+                          },
                           controllerCampo: _emailController,
                           tipoTeclado: TextInputType.emailAddress,
                           validacao: (String value) {
@@ -148,7 +162,9 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                             width: MediaQuery.of(context).size.width * 0.47,
                             child: _buildTextFormField(
                                 texto: "Senha",
-                                onChanged: localUser.mudarSenha,
+                                onChanged: (value) {
+                                  _senhaController = value;
+                                },
                                 controllerCampo: _senhaController,
                                 tipoTeclado: TextInputType.text,
                                 obscure: true,
@@ -165,7 +181,9 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                               width: MediaQuery.of(context).size.width * 0.47,
                               child: _buildTextFormField(
                                   texto: "Celular",
-                                  onChanged: localUser.mudarCelular,
+                                  onChanged: (value) {
+                                    _celularController = value;
+                                  },
                                   controllerCampo: _celularController,
                                   mascara: [mascaraCelular],
                                   tipoTeclado: TextInputType.phone,
@@ -189,7 +207,9 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                             width: MediaQuery.of(context).size.width * 0.68,
                             child: _buildTextFormField(
                                 texto: "Logradouro",
-                                onChanged: localUser.mudarLogradouro,
+                                onChanged: (value) {
+                                  _logradouroController = value;
+                                },
                                 controllerCampo: _logradouroController,
                                 tipoTeclado: TextInputType.text,
                                 validacao: (String value) {
@@ -204,7 +224,9 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                               width: MediaQuery.of(context).size.width * 0.25,
                               child: _buildTextFormField(
                                   texto: "Nº",
-                                  onChanged: localUser.mudarNumero,
+                                  onChanged: (value) {
+                                    _numeroController = value;
+                                  },
                                   controllerCampo: _numeroController,
                                   tipoTeclado: TextInputType.number,
                                   onTap: null,
@@ -225,7 +247,9 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                               width: MediaQuery.of(context).size.width * 0.5,
                               child: _buildTextFormField(
                                   texto: "Complemento",
-                                  onChanged: localUser.mudarComplemento,
+                                  onChanged: (value) {
+                                    _complementoController = value;
+                                  },
                                   controllerCampo: _complementoController,
                                   tipoTeclado: TextInputType.text,
                                   onTap: null,
@@ -237,7 +261,9 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                               width: MediaQuery.of(context).size.width * 0.43,
                               child: _buildTextFormField(
                                   texto: "Bairro",
-                                  onChanged: localUser.mudarBairro,
+                                  onChanged: (value) {
+                                    _bairroController = value;
+                                  },
                                   controllerCampo: _bairroController,
                                   tipoTeclado: TextInputType.text,
                                   onTap: null,
@@ -258,7 +284,9 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                               width: MediaQuery.of(context).size.width * 0.63,
                               child: _buildTextFormField(
                                   texto: "Cidade",
-                                  onChanged: localUser.mudarCidade,
+                                  onChanged: (value) {
+                                    _cidadeController = value;
+                                  },
                                   controllerCampo: _cidadeController,
                                   tipoTeclado: TextInputType.text,
                                   onTap: null,
@@ -304,11 +332,21 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                                     'TO'
                                   ],
                                   titulo: "UF",
-                                  onChanged: localUser.mudarEstado,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _estadoController = value;
+                                    });
+                                  },
                                   validacao: (String value) {
-                                    if (value.isEmpty || value == null) {
+                                    if (value.isEmpty ||
+                                        value == null ||
+                                        value == "") {
+                                      return "Campo obrigatório";
                                     } else
                                       return null;
+                                  },
+                                  onSaved: (value) {
+                                    _estadoController = value;
                                   })),
                         ],
                       ),
@@ -316,29 +354,34 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                       RaisedButton(
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
+                            DateTime dataAux = DateFormat("dd/MM/yyyy")
+                                .parse(_nascimentoController.text)
+                                .add(Duration(hours: 3));
+                            Timestamp tsAux = Timestamp.fromDate(dataAux);
                             Map<String, dynamic> dadosUsuario = {
-                              "nome": localUser.nome,
-                              "email": localUser.email,
-                              "celular": localUser.celular,
-                              "nascimento": localUser.nascimentoTimestamp,
-                              "sexo": localUser.sexo,
+                              "nome": _nomeController.text,
+                              "email": _emailController.text.toLowerCase(),
+                              "celular": _celularController.text,
+                              "nascimento": tsAux,
+                              "sexo": _sexoController,
                               "endereco": {
-                                "bairro": localUser.bairro,
-                                "cidade": localUser.cidade,
-                                "complemento": localUser.complemento,
-                                "estado": localUser.estado,
-                                "logradouro": localUser.logradouro,
-                                "numero": localUser.numero
+                                "bairro": _bairroController.text,
+                                "cidade": _cidadeController.text,
+                                "complemento": _complementoController.text,
+                                "estado": _estadoController,
+                                "logradouro": _logradouroController.text,
+                                "numero": _numeroController.text
                               }
                             };
 
                             authRepo.criarUsuario(
                                 dadosUsuario: dadosUsuario,
-                                senha: localUser.senha,
+                                senha: _senhaController.text,
                                 onSuccess: _onSuccess,
                                 onFail: _onFail);
 
                             print("Validado corretamente");
+                            print(_nomeController.text);
                           } else {
                             print("Erro de validação");
                             return null;
@@ -373,6 +416,7 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
       @required double fatorTela,
       @required List<String> itens,
       @required Function onChanged,
+      @required Function onSaved,
       @required Function validacao,
       // @required TextEditingController controllerCampo,
       @required String titulo}) {
@@ -389,6 +433,7 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
             }).toList(),
             onChanged: onChanged,
             validator: validacao,
+            onSaved: onSaved,
             style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
               filled: false,
