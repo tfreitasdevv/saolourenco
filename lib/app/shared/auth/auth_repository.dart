@@ -51,7 +51,7 @@ class AuthRepository {
         .signInWithEmailAndPassword(email: email, password: senha)
         .then((authResult) async {
       await localUser.setFirebaseUser(authResult.user);
-      await _obterUsuarioAtual();
+      await obterUsuarioAtual();
       onSuccess();
       await localUser.setIsLoadingFalse();
     }).catchError((e) async {
@@ -66,9 +66,11 @@ class AuthRepository {
     await _auth.signOut();
     dadosUsuario = Map();
     localUser.setFirebaseUser(null);
+    localUser.mudarNome(null);
+    localUser.mudarEmail(null);
   }
 
-  Future<Null> _obterUsuarioAtual() async {
+  Future<Null> obterUsuarioAtual() async {
     if (localUser.firebaseUser == null)
       localUser.firebaseUser = await _auth.currentUser();
     if (localUser.firebaseUser != null) {

@@ -1,10 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:paroquia_sao_lourenco/app/modules/pastorais/models/pastoral_item_model.dart';
 import 'package:paroquia_sao_lourenco/app/modules/pastorais/widgets/item_card.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
+import '../../shared/auth/auth_repository.dart';
+import '../../shared/auth/local_user.dart';
+import '../../shared/constants/constants.dart';
 import 'pastorais_controller.dart';
 
 class PastoraisPage extends StatefulWidget {
@@ -21,26 +25,95 @@ class _PastoraisPageState
   //use 'controller' variable to access controller
 
   bool web = kIsWeb;
+  final localUser = Modular.get<LocalUser>();
+  final authRepo = Modular.get<AuthRepository>();
+  int aux;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-              decoration: BoxDecoration(color: t2),
-              accountName: Text("Thiago Freitas"),
-              accountEmail: Text("tfreitasdevv@gmail.com"),
-              currentAccountPicture: InkWell(
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
+      drawer: Observer(builder: (_) {
+        return Drawer(
+          child: Column(
+            children: <Widget>[
+              UserAccountsDrawerHeader(
+                decoration: BoxDecoration(color: t2),
+                accountName: Text(localUser.firebaseUser == null
+                    ? "Paróquia São Lourenço"
+                    : localUser.nome),
+                accountEmail: GestureDetector(
+                  onTap: localUser.firebaseUser == null
+                      ? () {
+                          Modular.to.pushNamed('/login');
+                        }
+                      : () {},
+                  child: Text(localUser.firebaseUser == null
+                      ? "CLIQUE AQUI PARA FAZER LOGIN"
+                      : localUser.firebaseUser.email),
+                ),
+                currentAccountPicture: InkWell(child: Image.asset(iconeBranco)),
+              ),
+              InkWell(
+                onTap: () {
+                  Modular.to.pushReplacementNamed('/');
+                },
+                child: ListTile(
+                  title: Text(
+                    "PÁGINA INICIAL",
+                    style: TextStyle(color: t1),
+                  ),
+                  leading: Icon(Icons.home, color: t2),
                 ),
               ),
-            )
-          ],
-        ),
-      ),
+              Container(
+                child: localUser.firebaseUser == null
+                    ? null
+                    : InkWell(
+                        onTap: () {},
+                        child: ListTile(
+                          title: Text(
+                            "EDITAR PERFIL",
+                            style: TextStyle(color: t1),
+                          ),
+                          leading: Icon(Icons.account_circle, color: t2),
+                        ),
+                      ),
+              ),
+              Container(
+                child: localUser.firebaseUser == null
+                    ? null
+                    : InkWell(
+                        onTap: () {},
+                        child: ListTile(
+                          title: Text(
+                            "ALTERAR SENHA",
+                            style: TextStyle(color: t1),
+                          ),
+                          leading: Icon(Icons.lock_outline, color: t2),
+                        ),
+                      ),
+              ),
+              Container(
+                child: localUser.firebaseUser == null
+                    ? null
+                    : InkWell(
+                        onTap: () {
+                          authRepo.logout();
+                          Modular.to.pushReplacementNamed('/');
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "LOGOUT",
+                            style: TextStyle(color: t1),
+                          ),
+                          leading: Icon(Icons.exit_to_app, color: t2),
+                        ),
+                      ),
+              ),
+            ],
+          ),
+        );
+      }),
       appBar: AppBar(
         backgroundColor: t2,
         title: FittedBox(child: Text(widget.title)),

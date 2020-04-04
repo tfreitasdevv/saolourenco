@@ -7,6 +7,24 @@ part 'local_user.g.dart';
 class LocalUser = _LocalUserBase with _$LocalUser;
 
 abstract class _LocalUserBase with Store {
+  _LocalUserBase() {
+    init();
+  }
+
+  @action
+  init() async {
+    if (firebaseUser == null) {
+      firebaseUser = await FirebaseAuth.instance.currentUser();
+    }
+    if (firebaseUser != null) {
+      DocumentSnapshot docUser = await Firestore.instance
+          .collection('usuarios')
+          .document(firebaseUser.uid)
+          .get();
+          mudarNome(docUser['nome']);
+    }
+  }
+
   @observable
   FirebaseUser firebaseUser;
   @action
@@ -45,14 +63,14 @@ abstract class _LocalUserBase with Store {
   @observable
   String erroAoCriarUsuario;
   @action
-  mudarErroAoCriarUsuario(String value){
+  mudarErroAoCriarUsuario(String value) {
     erroAoCriarUsuario = value;
   }
 
   @observable
   String erroAoLogar;
   @action
-  mudarErroAoLogar(String value){
+  mudarErroAoLogar(String value) {
     erroAoLogar = value;
   }
 }

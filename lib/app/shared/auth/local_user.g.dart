@@ -113,6 +113,13 @@ mixin _$LocalUser on _LocalUserBase, Store {
     }, _$erroAoLogarAtom, name: '${_$erroAoLogarAtom.name}_set');
   }
 
+  final _$initAsyncAction = AsyncAction('init');
+
+  @override
+  Future init() {
+    return _$initAsyncAction.run(() => super.init());
+  }
+
   final _$setFirebaseUserAsyncAction = AsyncAction('setFirebaseUser');
 
   @override

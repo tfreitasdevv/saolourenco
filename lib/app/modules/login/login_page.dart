@@ -1,9 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../shared/auth/auth_repository.dart';
 import '../../shared/auth/local_user.dart';
-import '../../shared/constants/constants.dart';
 import '../../shared/constants/constants.dart';
 import 'login_controller.dart';
 
@@ -148,6 +148,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                         return RaisedButton(
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
+                              FirebaseAuth.instance.signOut();
                               authRepo.logar(
                                   email: _emailController.text.trim(),
                                   senha: _senhaController.text,
@@ -179,7 +180,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                       SizedBox(height: espacos),
                       RaisedButton(
                         // color: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          Modular.to.pushReplacementNamed('/signup');
+                        },
                         elevation: 6,
                         padding:
                             EdgeInsets.symmetric(vertical: 12, horizontal: 22),
