@@ -204,7 +204,21 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
   }
 
   void _onSuccess() {
-    Navigator.of(context).pop();
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Container(
+        padding: EdgeInsets.all(18),
+        child: Text(
+          "Login realizado com sucesso!",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+      ),
+      backgroundColor: Colors.black,
+      duration: Duration(seconds: 4),
+    ));
+    Future.delayed(Duration(seconds: 4)).then((_) {
+      Navigator.of(context).pop();
+    });
   }
 
   void _onFail() {

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:paroquia_sao_lourenco/app/shared/auth/local_user.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 import 'package:paroquia_sao_lourenco/app/shared/widgets/acesso_membros_button.dart';
 
@@ -15,6 +16,7 @@ class MusicaPage extends StatefulWidget {
 
 class _MusicaPageState extends State<MusicaPage> {
   bool web = kIsWeb;
+  final localUser = Modular.get<LocalUser>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,74 @@ class _MusicaPageState extends State<MusicaPage> {
                 _contato(context),
                 SizedBox(height: 22),
                 AcessoMembrosButton(funcao: () {
-                  Modular.to.pushNamed('/musica/membros_musica');
+                  if (localUser.firebaseUser == null) {
+                    showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) {
+                          return WillPopScope(
+                            onWillPop: () async => false,
+                            child: AlertDialog(
+                              scrollable: true,
+                              titleTextStyle: TextStyle(
+                                  color: t1,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width > 400
+                                          ? 20
+                                          : 18),
+                              elevation: 8,
+                              contentTextStyle: TextStyle(
+                                  color: t1,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width > 400
+                                          ? 16
+                                          : 14),
+                              actions: <Widget>[
+                                FlatButton(
+                                    onPressed: () {
+                                      Modular.to.pushReplacementNamed('/login');
+                                      // Navigator.of(context).pop();
+                                    },
+                                    child: Text(
+                                      "LOGIN",
+                                      style: TextStyle(
+                                          color: t1,
+                                          fontWeight: FontWeight.bold),
+                                    )),
+                                FlatButton(
+                                    onPressed: () {
+                                      Modular.to
+                                          .pushReplacementNamed('/signup');
+                                    },
+                                    child: Text(
+                                      "CRIAR USUÁRIO",
+                                      style: TextStyle(
+                                          color: t1,
+                                          fontWeight: FontWeight.bold),
+                                    )),
+                                FlatButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text(
+                                      "VOLTAR",
+                                      style: TextStyle(
+                                          color: t1,
+                                          fontWeight: FontWeight.bold),
+                                    )),
+                              ],
+                              title: Text(
+                                  "ACESSO RESTRITO A MEMBROS CADASTRADOS",
+                                  textAlign: TextAlign.center),
+                              content: Text(
+                                  "Esta área é de acesso restrito a membros cadastrados no aplicativo.\n\nCaso você já possua cadastro, basta fazer o Login.\n\nCaso você ainda não possua, basta criar o seu cadastro."),
+                            ),
+                          );
+                        });
+                  } else {
+                    Modular.to.pushNamed('/musica/membros_musica');
+                  }
                 })
               ],
             ),

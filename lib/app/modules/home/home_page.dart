@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:paroquia_sao_lourenco/app/modules/home/widgets/app_bar_home.dart';
 import 'package:paroquia_sao_lourenco/app/modules/home/widgets/button_home.dart';
@@ -135,34 +134,15 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             ),
             ButtonHome(
               texto: "Secretaria",
-              funcao: () {
-                Modular.to.pushNamed('/signup');
-              },
+              funcao: () {},
             ),
             SizedBox(
               height: _alturaSizedBox,
             ),
             ButtonHome(
               texto: "Dízimo",
-              funcao: () {
-                Modular.to.pushNamed('/login');
-              },
+              funcao: () {},
             ),
-            SizedBox(
-              height: _alturaSizedBox,
-            ),
-            Observer(builder: (_) {
-              return Container(
-                child: Center(
-                  child: Text(
-                    localUser.firebaseUser != null
-                        ? "Usuário logado ${localUser.nome}"
-                        : "Usuário não logado",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              );
-            })
           ],
         ),
       ),
