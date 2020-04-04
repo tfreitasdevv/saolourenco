@@ -129,7 +129,56 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                         keyboardType: TextInputType.text,
                       ),
                       FlatButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (_emailController.text.isEmpty ||
+                              !_emailController.text.contains("@") ||
+                              !_emailController.text.contains(".")) {
+                            _scaffoldKey.currentState.showSnackBar(SnackBar(
+                              content: Container(
+                                padding: EdgeInsets.all(18),
+                                child: Text(
+                                  "Insira um e-mail válido para recuperação",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20),
+                                ),
+                              ),
+                              backgroundColor: Colors.black,
+                              duration: Duration(seconds: 4),
+                            ));
+                          } else {
+                            authRepo.recuperarSenha(_emailController.text);
+                            _scaffoldKey.currentState.showSnackBar(SnackBar(
+                              content: Container(
+                                padding: EdgeInsets.all(18),
+                                child: Container(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      Text(
+                                        "E-MAIL DE RECUPERAÇÃO DE SENHA ENVIADO",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 8),
+                                      Text(
+                                        "Confira seu e-mail informado e siga as instruções",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 18),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              backgroundColor: Colors.black,
+                              duration: Duration(seconds: 4),
+                            ));
+                          }
+                        },
                         child: Align(
                           alignment: Alignment.centerRight,
                           child: Text(
@@ -226,16 +275,20 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
     String mensagemErro = "*Falha no Login*";
     switch (tipoErro) {
       case "ERROR_USER_NOT_FOUND":
+      case "auth/user-not-found":
         mensagemErro = "Usuário não encontrado";
         break;
       case "ERROR_WRONG_PASSWORD":
+      case "auth/wrong-password":
         mensagemErro = "Senha incorreta";
         break;
       case "ERROR_USER_DISABLED":
+      case "auth/user-disabled":
         mensagemErro =
             "Seu usuário se encontra inativo. Contate a secretaria da Paróquia";
         break;
       case "ERROR_INVALID_EMAIL":
+      case "auth/invalid-email":
         mensagemErro = "Formato de e-mail inválido";
         break;
       default:
@@ -271,5 +324,6 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
       duration: Duration(seconds: 4),
     ));
     print("Erro ao criar usuário");
+    print(tipoErro);
   }
 }

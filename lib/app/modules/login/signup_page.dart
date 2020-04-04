@@ -468,9 +468,11 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
     String mensagemErro = "*Falha ao criar usuário*";
     switch (tipoErro) {
       case "ERROR_EMAIL_ALREADY_IN_USE":
+      case "auth/email-already-in-use":
         mensagemErro = "E-mail já cadastrado no sistema";
         break;
       case "ERROR_INVALID_EMAIL":
+      case "auth/invalid-email":
         mensagemErro = "Formato de e-mail inválido";
         break;
       default:

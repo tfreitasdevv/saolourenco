@@ -81,4 +81,8 @@ class AuthRepository {
       dadosUsuario = docUser.data;
     }
   }
+
+  void recuperarSenha(String email) {
+    _auth.sendPasswordResetEmail(email: email);
+  }
 }
