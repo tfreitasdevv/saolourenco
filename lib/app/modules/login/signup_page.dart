@@ -96,7 +96,6 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                                   onChanged: (value) {
                                     _nascimentoController = value;
                                   },
-                                  // editado: localUser.mudarNascimento,
                                   controllerCampo: _nascimentoController,
                                   tipoTeclado: TextInputType.datetime,
                                   mascara: [mascaraData],
@@ -106,11 +105,40 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                                     DateTime min = DateTime(1900);
                                     DateTime aux =
                                         DateFormat("dd/MM/yyyy").parse(value);
+
+                                    String toOriginalFormatString(
+                                        DateTime dateTime) {
+                                      final d = dateTime.day
+                                          .toString()
+                                          .padLeft(2, '0');
+                                      final m = dateTime.month
+                                          .toString()
+                                          .padLeft(2, '0');
+                                      final y = dateTime.year
+                                          .toString()
+                                          .padLeft(4, '0');
+                                      print(
+                                          "----**********-------*******-------*******---*********");
+                                      print("$d/$m/$y");
+                                      return "$d/$m/$y";
+                                    }
+
+                                    bool isValidDate(String input) {
+                                      final originalFormatString =
+                                          toOriginalFormatString(aux);
+                                      return input == originalFormatString;
+                                    }
+
+                                    bool validacaoDataPossivel =
+                                        isValidDate(value);
+
                                     if (value.isEmpty || value == null) {
                                       return "Campo obrigatório";
                                     } else if (aux == null ||
                                         aux.isAfter(max) ||
                                         aux.isBefore(min)) {
+                                      return "Data inválida - dd/mm/yyyy";
+                                    } else if(!validacaoDataPossivel){
                                       return "Data inválida - dd/mm/yyyy";
                                     }
                                     return null;
@@ -368,16 +396,19 @@ class _SignupPageState extends ModularState<SignupPage, LoginController> {
                               Timestamp tsAux = Timestamp.fromDate(dataAux);
                               Map<String, dynamic> dadosUsuario = {
                                 "nome": _nomeController.text.trim(),
-                                "email": _emailController.text.toLowerCase().trim(),
+                                "email":
+                                    _emailController.text.toLowerCase().trim(),
                                 "celular": _celularController.text,
                                 "nascimento": tsAux,
                                 "sexo": _sexoController,
                                 "endereco": {
                                   "bairro": _bairroController.text.trim(),
                                   "cidade": _cidadeController.text.trim(),
-                                  "complemento": _complementoController.text.trim(),
+                                  "complemento":
+                                      _complementoController.text.trim(),
                                   "estado": _estadoController,
-                                  "logradouro": _logradouroController.text.trim(),
+                                  "logradouro":
+                                      _logradouroController.text.trim(),
                                   "numero": _numeroController.text.trim()
                                 }
                               };
