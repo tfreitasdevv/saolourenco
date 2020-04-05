@@ -68,7 +68,9 @@ class _MembrosMusicaPageState extends State<MembrosMusicaPage>
                   child: localUser.firebaseUser == null
                       ? null
                       : InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Modular.to.pushNamed('/profile');
+                          },
                           child: ListTile(
                             title: Text(
                               "EDITAR PERFIL",

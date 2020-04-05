@@ -41,6 +41,14 @@ class AuthRepository {
         .setData(dadosUsuario);
   }
 
+  Future<Null> atualizarDadosUsuario(Map<String, dynamic> dadosUsuario) async {
+    this.dadosUsuario = dadosUsuario;
+    await Firestore.instance
+        .collection('usuarios')
+        .document(localUser.firebaseUser.uid)
+        .updateData(dadosUsuario);
+  }
+
   void logar(
       {@required String email,
       @required String senha,
@@ -80,6 +88,19 @@ class AuthRepository {
           .get();
       dadosUsuario = docUser.data;
     }
+  }
+
+  Future<Map<String, dynamic>> obterUsuarioProfile() async {
+    if (localUser.firebaseUser == null)
+      localUser.firebaseUser = await _auth.currentUser();
+    if (localUser.firebaseUser != null) {
+      DocumentSnapshot docUser = await Firestore.instance
+          .collection('usuarios')
+          .document(localUser.firebaseUser.uid)
+          .get();
+      dadosUsuario = docUser.data;
+    }
+    return dadosUsuario;
   }
 
   void recuperarSenha(String email) {
