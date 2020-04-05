@@ -200,7 +200,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                               FirebaseAuth.instance.signOut();
                               authRepo.logar(
                                   email: _emailController.text.trim(),
-                                  senha: _senhaController.text,
+                                  senha: _senhaController.text.trim(),
                                   onSuccess: _onSuccess,
                                   onFail: _onFail);
                             }
