@@ -22,12 +22,14 @@ class _MembrosMusicaPageState extends State<MembrosMusicaPage>
     with SingleTickerProviderStateMixin<MembrosMusicaPage> {
   final localUser = Modular.get<LocalUser>();
   final authRepo = Modular.get<AuthRepository>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        key: _scaffoldKey,
         drawer: Observer(builder: (_) {
           return Drawer(
             child: Column(
@@ -80,7 +82,104 @@ class _MembrosMusicaPageState extends State<MembrosMusicaPage>
                   child: localUser.firebaseUser == null
                       ? null
                       : InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (context) {
+                                  return WillPopScope(
+                                    onWillPop: () async => false,
+                                    child: AlertDialog(
+                                      scrollable: true,
+                                      titleTextStyle: TextStyle(
+                                          color: t1,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width >
+                                                  400
+                                              ? 20
+                                              : 18),
+                                      elevation: 8,
+                                      contentTextStyle: TextStyle(
+                                          color: t1,
+                                          fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width >
+                                                  400
+                                              ? 16
+                                              : 14),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                            onPressed: () {
+                                              authRepo.recuperarSenha(
+                                                  localUser.firebaseUser.email);
+                                              _scaffoldKey.currentState
+                                                  .showSnackBar(SnackBar(
+                                                content: Container(
+                                                  padding: EdgeInsets.all(18),
+                                                  child: Container(
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: <Widget>[
+                                                        Text(
+                                                          "E-MAIL DE ALTERAÇÃO DE SENHA ENVIADO",
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 22,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        SizedBox(height: 8),
+                                                        Text(
+                                                          "Confira seu e-mail e siga as instruções",
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 18),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                backgroundColor: Colors.black,
+                                                duration: Duration(seconds: 4),
+                                              ));
+                                              Navigator.of(context).pop();
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text(
+                                              "ALTERAR SENHA",
+                                              style: TextStyle(
+                                                  color: t1,
+                                                  fontWeight: FontWeight.bold),
+                                            )),
+                                        FlatButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text(
+                                              "CANCELAR",
+                                              style: TextStyle(
+                                                  color: t1,
+                                                  fontWeight: FontWeight.bold),
+                                            )),
+                                      ],
+                                      title: Text("ALTERAR SENHA",
+                                          textAlign: TextAlign.center),
+                                      content: Text(
+                                          "Ao solicitar alteração da senha, um e-mail será enviado com instruções para a definição da nova senha.\n\nDeseja prosseguir com a alteração?"),
+                                    ),
+                                  );
+                                });
+                          },
                           child: ListTile(
                             title: Text(
                               "ALTERAR SENHA",
