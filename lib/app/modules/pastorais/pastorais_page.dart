@@ -46,7 +46,9 @@ class _PastoraisPageState
         titulo: 'PASTORAL DA LITURGUA',
         image: liturgia,
         textColor: t1,
-        funcao: () {}),
+        funcao: () {
+          Modular.to.pushNamed('/liturgia');
+        }),
     PastoralItemModel(
         titulo: 'PASTORAL DA MÚSICA',
         image: musica,
@@ -63,18 +65,27 @@ class _PastoraisPageState
         titulo: 'PASTORAL DO BATISMO',
         image: bastismo,
         textColor: t1,
-        funcao: () {}),
+        funcao: () {
+          Modular.to.pushNamed('/batismo');
+        }),
     PastoralItemModel(
         titulo: 'GRUPO DE ORAÇÃO',
         image: grupo,
         textColor: Colors.white,
-        funcao: () {}),
+        funcao: () {
+          Modular.to.pushNamed('/grupo_de_oracao');
+        }),
     PastoralItemModel(
         titulo: 'ENCONTRO DE CASAIS', image: ecc, textColor: t1, funcao: () {}),
     PastoralItemModel(titulo: 'EAC', image: eac, textColor: t1, funcao: () {}),
     PastoralItemModel(titulo: 'EJC', image: ejc, textColor: t1, funcao: () {}),
     PastoralItemModel(
-        titulo: 'CATEQUESE', image: catequese, textColor: t1, funcao: () {}),
+        titulo: 'CATEQUESE',
+        image: catequese,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/catequese');
+        }),
     PastoralItemModel(
         titulo: 'PASTORAL DA CRISMA',
         image: crisma,
