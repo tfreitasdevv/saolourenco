@@ -23,6 +23,7 @@ const String musica = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.
 
 const String facebook = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Ff.png?alt=media&token=2fdf7fa1-2acc-4aba-90ee-1fc7a380d2ae';
 const String instagram = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Fi.png?alt=media&token=3e6bed0c-886b-4b48-8b24-ace072148064';
+const String youtube = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Fy.png?alt=media&token=43679dad-4f9f-4ec5-9ec8-dd30bedcf178';
 const String telefone = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Ft.png?alt=media&token=8e1a62f2-2bdd-47fb-b7cc-e97384da832b';
 const String mapa = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Fm.png?alt=media&token=0a6c3f4c-70f4-4d1c-97c4-6f5c1e907bc6';
 

@@ -8,6 +8,7 @@ import 'package:paroquia_sao_lourenco/app/modules/home/widgets/icons_home.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../shared/auth/local_user.dart';
+import '../../shared/constants/constants.dart';
 import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -68,7 +69,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                 _facebook();
               },
               web: web),
-          IconsHome(icone: instagram, funcao: () {}, web: web),
+          IconsHome(icone: youtube, funcao: () {_youtube();}, web: web),
           IconsHome(
               icone: telefone,
               funcao: () {
@@ -96,6 +97,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
 
   void _map() {
     launch("https://goo.gl/maps/C1pTwXisfhoyH5uE7");
+  }
+
+  void _youtube() {
+    launch("https://www.youtube.com/channel/UCl7QjDbKSR5CXQE732ihoRg");
   }
 
   Container _buildListaBotoes(double alturaTela) {
