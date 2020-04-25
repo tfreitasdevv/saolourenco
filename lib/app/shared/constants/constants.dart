@@ -23,6 +23,7 @@ const String musica = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.
 const String pascom = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fpascom.jpg?alt=media&token=a410e4f4-6c3f-4d68-98eb-9f073427d0ee';
 const String ejc2 = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fejc2.jpg?alt=media&token=ebd63ebd-52e1-481f-bdc0-73f188e8b46a';
 const String mej = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fmej.jpg?alt=media&token=55af65cf-b491-4173-a4b5-c5d458aeefc0';
+const String saoLourencoDosIndios = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FCapelas%2FSaoLourencoDosIndios.jpg?alt=media&token=8abbff62-739b-4273-8956-7de2a36150ab';
 
 const String facebook = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Ff.png?alt=media&token=2fdf7fa1-2acc-4aba-90ee-1fc7a380d2ae';
 const String instagram = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Fi.png?alt=media&token=3e6bed0c-886b-4b48-8b24-ace072148064';

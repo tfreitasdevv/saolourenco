@@ -146,7 +146,9 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             ),
             ButtonHome(
               texto: "Capelas",
-              funcao: () {},
+              funcao: () {
+                Modular.to.pushNamed('/capelas');
+              },
             ),
           ],
         ),

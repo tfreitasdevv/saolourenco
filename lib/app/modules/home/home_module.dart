@@ -2,6 +2,7 @@ import 'package:paroquia_sao_lourenco/app/modules/acolitos/acolitos_module.dart'
 import 'package:paroquia_sao_lourenco/app/modules/alfabetizacao/alfabetizacao_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/avisos/avisos_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/batismo/batismo_module.dart';
+import 'package:paroquia_sao_lourenco/app/modules/capelas/capelas_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/catequese/catequese_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/coroinhas/coroinhas_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/crisma/crisma_module.dart';
@@ -34,6 +35,7 @@ class HomeModule extends ChildModule {
         Router(Modular.initialRoute, child: (_, args) => HomePage()),
         Router('/avisos', module: AvisosModule()),
         Router('/horarios', module: HorariosModule()),
+        Router('/capelas', module: CapelasModule()),
         Router('/pastorais', module: PastoraisModule()),
         Router('/musica', module: MusicaModule()),
         Router('/liturgia', module: LiturgiaModule()),
