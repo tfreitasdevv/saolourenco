@@ -2,15 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 
-class CrismaPage extends StatefulWidget {
+class EjcPage extends StatefulWidget {
   final String title;
-  const CrismaPage({Key key, this.title = "Crisma"}) : super(key: key);
+  const EjcPage({Key key, this.title = "EJC"}) : super(key: key);
 
   @override
-  _CrismaPageState createState() => _CrismaPageState();
+  _EjcPageState createState() => _EjcPageState();
 }
 
-class _CrismaPageState extends State<CrismaPage> {
+class _EjcPageState extends State<EjcPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,7 @@ class _CrismaPageState extends State<CrismaPage> {
           child: FutureBuilder<DocumentSnapshot>(
               future: Firestore.instance
                   .collection('conteudo_pagina_pastoral')
-                  .document('catecumenato_crismal')
+                  .document('ejc')
                   .get(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {

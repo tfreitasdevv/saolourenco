@@ -145,7 +145,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               height: _alturaSizedBox,
             ),
             ButtonHome(
-              texto: "Dízimo",
+              texto: "Capelas",
               funcao: () {},
             ),
           ],

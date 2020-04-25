@@ -57,10 +57,12 @@ class _PastoraisPageState
           Modular.to.pushNamed('/musica');
         }),
     PastoralItemModel(
-        titulo: 'PASTORAL DO DÍZIMO',
-        image: dizimo,
+        titulo: 'PASTORAL DA COMUNICAÇÃO',
+        image: pascom,
         textColor: t1,
-        funcao: () {}),
+        funcao: () {
+          Modular.to.pushNamed('/pascom');
+        }),
     PastoralItemModel(
         titulo: 'PASTORAL DO BATISMO',
         image: bastismo,
@@ -76,9 +78,20 @@ class _PastoraisPageState
           Modular.to.pushNamed('/grupo_de_oracao');
         }),
     PastoralItemModel(
-        titulo: 'ENCONTRO DE CASAIS', image: ecc, textColor: t1, funcao: () {}),
+        titulo: 'ENCONTRO DE CASAIS',
+        image: ecc,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/ecc');
+        }),
     PastoralItemModel(titulo: 'EAC', image: eac, textColor: t1, funcao: () {}),
-    PastoralItemModel(titulo: 'EJC', image: ejc, textColor: t1, funcao: () {}),
+    PastoralItemModel(
+        titulo: 'EJC',
+        image: ejc2,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/ejc');
+        }),
     PastoralItemModel(
         titulo: 'CATEQUESE',
         image: catequese,
@@ -90,7 +103,16 @@ class _PastoraisPageState
         titulo: 'PASTORAL DA CRISMA',
         image: crisma,
         textColor: t1,
-        funcao: () {}),
+        funcao: () {
+          Modular.to.pushNamed('/crisma');
+        }),
+    PastoralItemModel(
+        titulo: 'MEJ',
+        image: mej,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/mej');
+        }),
   ];
 
   _buildMainChild() {

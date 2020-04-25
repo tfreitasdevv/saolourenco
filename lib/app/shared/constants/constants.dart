@@ -20,10 +20,13 @@ const String ejc = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.app
 const String grupo = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fgrupo.jpg?alt=media&token=48c4bded-4429-42c1-b5aa-0a5029b50935';
 const String liturgia = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fliturgia.jpg?alt=media&token=bb5357dc-cfbf-4219-ae40-1b1a799cc8d1';
 const String musica = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fmusica.jpg?alt=media&token=dc7ced7c-4f32-4a0e-9772-8960d34a826c';
+const String pascom = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fpascom.jpg?alt=media&token=a410e4f4-6c3f-4d68-98eb-9f073427d0ee';
+const String ejc2 = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fejc2.jpg?alt=media&token=ebd63ebd-52e1-481f-bdc0-73f188e8b46a';
+const String mej = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fmej.jpg?alt=media&token=55af65cf-b491-4173-a4b5-c5d458aeefc0';
 
 const String facebook = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Ff.png?alt=media&token=2fdf7fa1-2acc-4aba-90ee-1fc7a380d2ae';
 const String instagram = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Fi.png?alt=media&token=3e6bed0c-886b-4b48-8b24-ace072148064';
-const String youtube = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Fy.png?alt=media&token=43679dad-4f9f-4ec5-9ec8-dd30bedcf178';
+const String youtube = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Fy2.png?alt=media&token=e5389218-2a14-4dec-a065-50ee6db65f47';
 const String telefone = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Ft.png?alt=media&token=8e1a62f2-2bdd-47fb-b7cc-e97384da832b';
 const String mapa = 'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Fm.png?alt=media&token=0a6c3f4c-70f4-4d1c-97c4-6f5c1e907bc6';
 

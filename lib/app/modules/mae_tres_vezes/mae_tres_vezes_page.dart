@@ -2,15 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 
-class CrismaPage extends StatefulWidget {
+class MaeTresVezesPage extends StatefulWidget {
   final String title;
-  const CrismaPage({Key key, this.title = "Crisma"}) : super(key: key);
+  const MaeTresVezesPage({Key key, this.title = "Mãe Três Vezes Admirável Schoenstatt"})
+      : super(key: key);
 
   @override
-  _CrismaPageState createState() => _CrismaPageState();
+  _MaeTresVezesPageState createState() => _MaeTresVezesPageState();
 }
 
-class _CrismaPageState extends State<CrismaPage> {
+class _MaeTresVezesPageState extends State<MaeTresVezesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +28,7 @@ class _CrismaPageState extends State<CrismaPage> {
           child: FutureBuilder<DocumentSnapshot>(
               future: Firestore.instance
                   .collection('conteudo_pagina_pastoral')
-                  .document('catecumenato_crismal')
+                  .document('mae_tres_vezes_admiravel')
                   .get(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
