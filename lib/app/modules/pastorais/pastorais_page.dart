@@ -113,6 +113,27 @@ class _PastoraisPageState
         funcao: () {
           Modular.to.pushNamed('/mej');
         }),
+    PastoralItemModel(
+        titulo: 'COROINHAS',
+        image: coroinhas,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/coroinhas');
+        }),
+    PastoralItemModel(
+        titulo: 'PASTORAL DO NASCITURO',
+        image: nascituro,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/nascituro');
+        }),
+    PastoralItemModel(
+        titulo: 'PASTORAL DA SAÚDE',
+        image: saude,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/saude');
+        }),
   ];
 
   _buildMainChild() {

@@ -51,6 +51,7 @@ class _CapelasPageState extends State<CapelasPage> {
       @required String missas,
       @required String urlFuncao}) {
     return Card(
+      elevation: 8,
       child: Column(
         children: [
           Image.network(imagem),
