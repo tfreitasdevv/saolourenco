@@ -23,6 +23,7 @@ import 'package:paroquia_sao_lourenco/app/modules/nascituro/nascituro_module.dar
 import 'package:paroquia_sao_lourenco/app/modules/pascom/pascom_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/pastorais/pastorais_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/saude/saude_module.dart';
+import 'package:paroquia_sao_lourenco/app/modules/sobre/sobre_module.dart';
 
 class HomeModule extends ChildModule {
   @override
@@ -37,6 +38,7 @@ class HomeModule extends ChildModule {
         Router('/horarios', module: HorariosModule()),
         Router('/capelas', module: CapelasModule()),
         Router('/pastorais', module: PastoraisModule()),
+        Router('/sobre', module: SobreModule()),
         Router('/musica', module: MusicaModule()),
         Router('/liturgia', module: LiturgiaModule()),
         Router('/batismo', module: BatismoModule()),

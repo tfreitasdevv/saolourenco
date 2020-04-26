@@ -69,7 +69,12 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                 _facebook();
               },
               web: web),
-          IconsHome(icone: youtube, funcao: () {_youtube();}, web: web),
+          IconsHome(
+              icone: youtube,
+              funcao: () {
+                _youtube();
+              },
+              web: web),
           IconsHome(
               icone: telefone,
               funcao: () {
@@ -103,8 +108,14 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     launch("https://www.youtube.com/channel/UCl7QjDbKSR5CXQE732ihoRg");
   }
 
+  void _cnbb() {
+    launch("https://liturgiadiaria.cnbb.org.br/app/user/user/UserView.php");
+  }
+
   Container _buildListaBotoes(double alturaTela) {
-    double _alturaSizedBox = alturaTela * 0.6 * 0.03;
+    double _alturaSizedBox = MediaQuery.of(context).size.width > 400
+        ? alturaTela * 0.6 * 0.03
+        : alturaTela * 0.3 * 0.03;
     return Container(
       height: alturaTela * 0.62,
       child: SingleChildScrollView(
@@ -134,20 +145,25 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                 Modular.to.pushNamed('/horarios');
               },
             ),
-            SizedBox(
-              height: _alturaSizedBox,
-            ),
+            SizedBox(height: _alturaSizedBox),
             ButtonHome(
-              texto: "Secretaria",
-              funcao: () {},
+              texto: "Sobre a Paróquia",
+              funcao: () {
+                Modular.to.pushNamed('/sobre');
+              },
             ),
-            SizedBox(
-              height: _alturaSizedBox,
-            ),
+            SizedBox(height: _alturaSizedBox),
             ButtonHome(
               texto: "Capelas",
               funcao: () {
                 Modular.to.pushNamed('/capelas');
+              },
+            ),
+            SizedBox(height: _alturaSizedBox),
+            ButtonHome(
+              texto: "Liturgia Diária (CNBB)",
+              funcao: () {
+                _cnbb();
               },
             ),
           ],

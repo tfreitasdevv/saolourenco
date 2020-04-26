@@ -145,7 +145,7 @@ class _MusicaPageState extends State<MusicaPage> {
                                           onPressed: () {
                                             Modular.to
                                                 .pushReplacementNamed('/login');
-                                            // Navigator.of(context).pop();
+                                            Navigator.of(context).pop();
                                           },
                                           child: Text(
                                             "LOGIN",
@@ -157,6 +157,7 @@ class _MusicaPageState extends State<MusicaPage> {
                                           onPressed: () {
                                             Modular.to.pushReplacementNamed(
                                                 '/signup');
+                                            Navigator.of(context).pop();
                                           },
                                           child: Text(
                                             "CRIAR USUÁRIO",
