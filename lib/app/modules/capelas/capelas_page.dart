@@ -38,6 +38,13 @@ class _CapelasPageState extends State<CapelasPage> {
               endereco: "Praça General Rondon - São Lourenço",
               missas: "1º e 3º Domingo do mês - 8h",
               urlFuncao: "https://goo.gl/maps/VtHA78BKXZSkt8Fx7"),
+          _buildCard(
+              context: context,
+              imagem: meninoJesusDePraga,
+              nome: "Capela Menino Jesus de Praga",
+              endereco: "R. Benjamin Constant, 397 - Condomínio Mululo da Veiga - Largo do Barradas",
+              missas: "Domingo - 10h",
+              urlFuncao: "https://goo.gl/maps/XQX7wZaPrjQU5ts5A"),
         ],
       ),
     );

@@ -42,7 +42,9 @@ const String nascituro =
 const String coroinhas =
     'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fcoroinhas.jpg?alt=media&token=ae0acd71-e956-4ec8-91d2-e1cd3a0d1907';
 const String saoLourencoDosIndios =
-    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FCapelas%2FSaoLourencoDosIndios.jpg?alt=media&token=8abbff62-739b-4273-8956-7de2a36150ab';
+    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FCapelas%2FSaoLourencoDosIndios.jpg?alt=media&token=a2e682f5-32e9-4fde-863f-4f52816a6142';
+const String meninoJesusDePraga =
+    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FCapelas%2FMeninoJesusDePraga.jpg?alt=media&token=020b1551-e617-4ed9-8166-ae0eca18b47d';    
 
 const String facebook =
     'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Ff.png?alt=media&token=2fdf7fa1-2acc-4aba-90ee-1fc7a380d2ae';
