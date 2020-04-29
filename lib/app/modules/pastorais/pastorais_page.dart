@@ -134,6 +134,62 @@ class _PastoraisPageState
         funcao: () {
           Modular.to.pushNamed('/saude');
         }),
+    PastoralItemModel(
+        titulo: 'ACÓLITOS INSTITUÍDOS',
+        image: acolitos,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/acolitos');
+        }),
+    PastoralItemModel(
+        titulo: 'ALFABETIZAÇÃO DE ADULTOS',
+        image: alfabetizacao,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/alfabetizacao');
+        }),
+    PastoralItemModel(
+        titulo: 'CONFERÊNCIA SÃO VICENTE DE PAULO',
+        image: conferencia_sao_vicente,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/conferencia_sao_vicente');
+        }),
+    PastoralItemModel(
+        titulo: 'PASTORAL DO DÍZIMO',
+        image: dizimo,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/dizimo');
+        }),
+    PastoralItemModel(
+        titulo: 'PASTORAL DE EVENTOS',
+        image: eventos,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/eventos');
+        }),
+    PastoralItemModel(
+        titulo: 'PASTORAL FAMILIAR',
+        image: familiar,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/familiar');
+        }),
+    PastoralItemModel(
+        titulo: 'MÃE TRÊS VEZES ADMIRÁVEL SCHOENSTATT',
+        image: mae_tres_vezes,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/mae_tres_vezes');
+        }),
+    PastoralItemModel(
+        titulo: 'PASTORAL DA PROMOÇÃO HUMANA',
+        image: promocao_humana,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/promocao_humana');
+        }),
   ];
 
   _buildMainChild() {

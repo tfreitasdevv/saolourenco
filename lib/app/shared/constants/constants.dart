@@ -37,6 +37,20 @@ const String mej =
     'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fmej.jpg?alt=media&token=55af65cf-b491-4173-a4b5-c5d458aeefc0';
 const String saude =
     'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fsaude.jpg?alt=media&token=541e1300-d0dd-4b4c-9ce7-1d46a6009596';
+const String acolitos =
+    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Facolitos.jpg?alt=media&token=1e030601-0af3-4734-a4b3-3cb58e201b2d';
+const String alfabetizacao =
+    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Falfabetizacao.jpg?alt=media&token=52a17b71-24c0-446b-ad8e-f0e7d800c54f';
+const String conferencia_sao_vicente =
+    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fconferencia_sao_vicente.jpg?alt=media&token=ad5ca163-c6a2-4cc3-a507-b7b9b85faa66';
+const String eventos =
+    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Feventos.jpg?alt=media&token=eab0e5d2-6f1a-48bf-adb8-e59fa43cc3bb';
+const String familiar =
+    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Ffamiliar.jpg?alt=media&token=dfb46493-e94a-4202-9aba-13b04faa0dfe';
+const String mae_tres_vezes =
+    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fmae_tres_vezes.jpg?alt=media&token=bdf88723-960a-4cd7-bc06-f259c54c49a0';
+const String promocao_humana =
+    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fpromocao_humana.jpg?alt=media&token=6de82717-9989-44a5-b7d8-5d203f99d166';
 const String nascituro =
     'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fnascituro.jpg?alt=media&token=a086fe70-c678-4f3b-b624-94469cc7e883';
 const String coroinhas =
@@ -44,7 +58,7 @@ const String coroinhas =
 const String saoLourencoDosIndios =
     'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FCapelas%2FSaoLourencoDosIndios.jpg?alt=media&token=a2e682f5-32e9-4fde-863f-4f52816a6142';
 const String meninoJesusDePraga =
-    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FCapelas%2FMeninoJesusDePraga.jpg?alt=media&token=020b1551-e617-4ed9-8166-ae0eca18b47d';    
+    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FCapelas%2FMeninoJesusDePraga.jpg?alt=media&token=020b1551-e617-4ed9-8166-ae0eca18b47d';
 
 const String facebook =
     'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Icones%2Ff.png?alt=media&token=2fdf7fa1-2acc-4aba-90ee-1fc7a380d2ae';
