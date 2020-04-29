@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../shared/constants/constants.dart';
 
@@ -56,6 +57,27 @@ class _GrupoDeOracaoPageState extends State<GrupoDeOracaoPage> {
                           textAlign: TextAlign.justify,
                         ),
                       ),
+                      SizedBox(height: 12),
+                      RaisedButton(
+                        color: Color(0xff1877f2),
+                        onPressed: () {
+                          _grupoFacebook();
+                        },
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18)),
+                        child: Text(
+                          "Nosso grupo no Facebook",
+                          style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width > 400
+                                ? 16
+                                : 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white
+                          ),
+                        ),
+                      ),
                       SizedBox(height: 22),
                       Container(
                         width: MediaQuery.of(context).size.width,
@@ -108,6 +130,7 @@ class _GrupoDeOracaoPageState extends State<GrupoDeOracaoPage> {
                         ),
                       ),
                       SizedBox(height: 22),
+
                       // AcessoMembrosButton(funcao: () {
                       //   var localUser;
                       //   if (localUser.firebaseUser == null) {
@@ -189,5 +212,9 @@ class _GrupoDeOracaoPageState extends State<GrupoDeOracaoPage> {
         ),
       ),
     );
+  }
+
+  void _grupoFacebook() {
+    launch('https://www.facebook.com/groups/381160881938654');
   }
 }
