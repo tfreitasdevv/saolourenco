@@ -21,6 +21,7 @@ class Clero extends StatelessWidget {
                 ));
               } else {
                 String _historia = snapshot.data['historia'];
+                String _historiaF = _historia.replaceAll("\\n", "\n");
                 return SingleChildScrollView(
                   child: Container(
                     padding: EdgeInsets.all(16),
@@ -88,14 +89,14 @@ class Clero extends StatelessWidget {
                         SizedBox(height: 16),
                         Container(
                           child: Text(
-                            _historia,
+                            _historiaF,
                             textAlign: TextAlign.justify,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize:
                                     MediaQuery.of(context).size.width > 400
-                                        ? 20
-                                        : 16),
+                                        ? 18
+                                        : 14),
                           ),
                         ),
                       ],
