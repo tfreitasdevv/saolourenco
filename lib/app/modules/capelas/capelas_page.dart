@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:paroquia_sao_lourenco/app/shared/constants/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../shared/constants/constants.dart';
+
 class CapelasPage extends StatefulWidget {
   final String title;
   const CapelasPage({Key key, this.title = "Capelas"}) : super(key: key);
@@ -42,9 +44,25 @@ class _CapelasPageState extends State<CapelasPage> {
               context: context,
               imagem: meninoJesusDePraga,
               nome: "Capela Menino Jesus de Praga",
-              endereco: "R. Benjamin Constant, 397 - Condomínio Mululo da Veiga - Largo do Barradas",
+              endereco:
+                  "R. Benjamin Constant, 397 - Condomínio Mululo da Veiga - Largo do Barradas",
               missas: "Domingo - 10h",
               urlFuncao: "https://goo.gl/maps/XQX7wZaPrjQU5ts5A"),
+          _buildCard(
+              context: context,
+              imagem: nSraDaConceicao,
+              nome: "Capela N. Sra. da Conceição",
+              endereco:
+                  "Rua F, Quadra 6 - Lote 13, - Morro Boa Vista - Fonseca",
+              missas: "2º e 4º Domingo do mês - 8h",
+              urlFuncao: "https://goo.gl/maps/yCR29LzE5ZD7YUNs6"),
+          _buildCard(
+              context: context,
+              imagem: nSraGuadalupe,
+              nome: "Capela N. Sra. de Guadalupe",
+              endereco: "Tv. Orleans, 90 - Morro do Juca Branco - Fonseca",
+              missas: "Sábado - 16h",
+              urlFuncao: "https://goo.gl/maps/K4givrRJzDSUzA4r5")
         ],
       ),
     );

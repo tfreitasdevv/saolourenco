@@ -29,8 +29,7 @@ class _PastoraisPageState
     return Scaffold(
       appBar: AppBar(
         backgroundColor: t2,
-        title: FittedBox(
-            child: Text(widget.title, style: TextStyle(fontSize: 16))),
+        title: FittedBox(child: Text(widget.title)),
         centerTitle: true,
       ),
       body: Container(
