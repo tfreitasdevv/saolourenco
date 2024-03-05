@@ -109,7 +109,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   }
 
   void _cnbb() {
-    launch("https://liturgiadiaria.cnbb.org.br/app/user/user/UserView.php");
+    launch("https://liturgiadiaria.cnbb.org.br/");
   }
 
   Container _buildListaBotoes(double alturaTela) {
