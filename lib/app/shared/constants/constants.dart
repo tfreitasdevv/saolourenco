@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
 
 //Imagens do Asset
 const String splash4k = 'assets/images/Splash4k.jpg';
@@ -10,6 +10,10 @@ const String iconeBranco = 'assets/images/IconeBranco.png';
 //Imagens Firebase Storage
 
 const String bastismo =
+    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fbatismo.jpg?alt=media&token=c96f6c95-8c77-4393-85c0-e17f43a2bc21';
+const String rua =
+    'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Frua.jpg?alt=media&token=8f660e31-c595-4d5e-b76a-9406e790f3fa';
+const String cor =
     'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fbatismo.jpg?alt=media&token=c96f6c95-8c77-4393-85c0-e17f43a2bc21';
 const String catequese =
     'https://firebasestorage.googleapis.com/v0/b/sao-lourenco.appspot.com/o/Imagens%2FPastorais%2Fcatequese.jpg?alt=media&token=67c4e76c-1611-462a-904b-0531c944d130';

@@ -5,6 +5,7 @@ import 'package:paroquia_sao_lourenco/app/modules/batismo/batismo_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/capelas/capelas_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/catequese/catequese_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/conferencia_sao_vicente/conferencia_sao_vicente_module.dart';
+import 'package:paroquia_sao_lourenco/app/modules/cor/cor_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/coroinhas/coroinhas_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/crisma/crisma_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/dizimo/dizimo_module.dart';
@@ -25,6 +26,7 @@ import 'package:paroquia_sao_lourenco/app/modules/nascituro/nascituro_module.dar
 import 'package:paroquia_sao_lourenco/app/modules/pascom/pascom_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/pastorais/pastorais_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/promocao_humana/promocao_humana_module.dart';
+import 'package:paroquia_sao_lourenco/app/modules/rua/rua_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/saude/saude_module.dart';
 import 'package:paroquia_sao_lourenco/app/modules/sobre/sobre_module.dart';
 
@@ -48,6 +50,7 @@ class HomeModule extends ChildModule {
         Router('/grupo_de_oracao', module: GrupoDeOracaoModule()),
         Router('/catequese', module: CatequeseModule()),
         Router('/crisma', module: CrismaModule()),
+        Router('/cor', module: CorModule()),
         Router('/pascom', module: PascomModule()),
         Router('/mej', module: MejModule()),
         Router('/acolitos', module: AcolitosModule()),
@@ -60,6 +63,7 @@ class HomeModule extends ChildModule {
         Router('/eventos', module: EventosModule()),
         Router('/nascituro', module: NascituroModule()),
         Router('/saude', module: SaudeModule()),
+        Router('/rua', module: RuaModule()),
         Router('/conferencia_sao_vicente',
             module: ConferenciaSaoVicenteModule()),
         Router('/familiar', module: FamiliarModule()),

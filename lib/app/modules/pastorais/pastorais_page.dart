@@ -39,7 +39,7 @@ class _PastoraisPageState
         child: _buildMainChild(),
       ),
     );
-  }
+  } 
 
   List<PastoralItemModel> pastorais = [
     PastoralItemModel(
@@ -189,6 +189,13 @@ class _PastoraisPageState
         textColor: t1,
         funcao: () {
           Modular.to.pushNamed('/promocao_humana');
+        }),
+    PastoralItemModel(
+        titulo: 'RUA',
+        image: rua,
+        textColor: t1,
+        funcao: () {
+          Modular.to.pushNamed('/rua');
         }),
   ];
 
